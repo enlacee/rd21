@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Riotjs MIRA</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" media="all" />
+	<script type="text/javascript" src="/static/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/riot%2Bcompiler.js"></script>
+	<script type="text/javascript" src="/static/js/env.js"></script>
+	<script type="text/javascript" src="/static/js/model.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="leftPanel">
+			<coleccion-lista></coleccion-lista>
+		</div>
+
+		<div class="rightPanel">
+			<main-grid></main-grid>
+		</div>
+
+		<inspector></inspector>
+	</div>
+
+	<!-- script my tag -->
+	<script type="riot/tag" src="/static/tag/03/coleccion-item.tag"></script>
+	<script type="riot/tag" src="/static/tag/03/coleccion-lista.tag"></script>
+	<script type="riot/tag" src="/static/tag/03/main-grid.tag"></script>
+
+	<script type="riot/tag" src="/static/tag/03/inspector.tag"></script>
+	<script>
+		(function(){
+			env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))
+			env.add('cur_coleccion', new AjaxModel())
+			env.add('cur_item', new AjaxModel())
+			riot.mount('*');
+		})();
+	</script>
+	<style type="text/css">
+	.red{
+		border:1px solid red;
+	}
+	.blue{
+		border:1px solid blue;
+	}
+	.container{
+		width:100%
+	}
+	.leftPanel{
+		float:left;
+		width:20%
+	}
+	.rightPanel{
+		float:left;
+		width:80%
+	}
+	</style>
+</body>
+</html>
