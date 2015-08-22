@@ -8,8 +8,8 @@
 	<hr>
 	<div id="grid_container">
 		<div class="item" each={items} onclick={gotoInspector}>
-			<div class="innerframe"><img src={this.blobs.thumbnail}/></div>
-			{this.name}
+			<div class="innerframe"><img class="thumbnail" src={this.blobs.thumbnail}/></div>
+			<span class="item-title">{this.name}</span>
 		</div>
 	</div>
 
@@ -75,6 +75,17 @@
 		.item img {
 			max-width: 120px;
 			height: auto;
+			vertical-align: middle;
+			display: inline-block;
+		}
+		.item .item-title {
+			top: -13px;
+			position: relative;
+			color: black;
+			display: block;
+			background-color: rgba(255,255,255, 0.7);
+		}
+		.thumbnail {
 			vertical-align: middle;
 			display: inline-block;
 		}
