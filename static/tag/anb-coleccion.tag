@@ -27,9 +27,7 @@
 
 		})
 
-		//(1) exe
+		//(1) start
 		env.anb_coleccion.load();
-
-
 	</script>
 </anb-coleccion>

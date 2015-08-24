@@ -1,11 +1,9 @@
 <main-grid>
 	<div id="grid_container">
-		INICIO
 		<div class="item" onclick={abrirInspector} each={items}>
 			<div class="innerframe"><img src={this.blobs.thumbnail}/></div>
 			{this.name}
 		</div>
-		FIN
 	</div>
 	<script>
 		var me = this;
@@ -23,7 +21,6 @@
 					env['tag-inspector'].update();
 			});
 		}
-
 
 	</script>
 	<style scoped>

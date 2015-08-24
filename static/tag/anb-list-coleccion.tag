@@ -1,13 +1,9 @@
 <anb-list-coleccion>
 	<ul id="anb_list_coleccion_id">
-
 		<ul>
 			<li each={collections} riot-tag="anb-coleccion"></li>
 		</ul>
-
 	</ul>
-
-
 
 	<script>
 		var me = this;
@@ -29,9 +25,7 @@
 
 		})
 
-		//(1) exe
+		// start
 		env.anb_list_coleccion.load();
-
-
 	</script>
 </anb-list-coleccion>
