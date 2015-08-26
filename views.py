@@ -15,3 +15,6 @@ def example02(request):
 
 def example03(request):
 	return TemplateResponse(request, 'riotface/03.html', {})
+
+def example04(request):
+	return TemplateResponse(request, 'riotface/04.html', {})

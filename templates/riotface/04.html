@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Riotjs MIRA</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" media="all" />
+	<script type="text/javascript" src="/static/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/riot%2Bcompiler.js"></script>
+	<script type="text/javascript" src="/static/js/env.js"></script>
+	<script type="text/javascript" src="/static/js/model.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="leftPanel">
+
+		</div>
+
+		<div class="rightPanel">
+
+		</div>
+
+		<div id="result"></div>
+aaa
+
+
+
+	</div>
+
+	<!-- script my tag -->
+	<script>
+	if(typeof(EventSource) !== "undefined") {
+		var source = new EventSource("http://www.w3schools.com/html/demo_sse.php");
+		source.onmessage = function(event) {
+			document.getElementById("result").innerHTML += event.data + "<br>";
+		};
+	} else {
+		document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";
+	}
+	</script>
+
+	<style type="text/css">
+	.red{
+		border:1px solid red;
+	}
+	.blue{
+		border:1px solid blue;
+	}
+	.container{
+		width:100%
+	}
+	.leftPanel{
+		float:left;
+		width:20%
+	}
+	.rightPanel{
+		float:left;
+		width:80%
+	}
+	</style>
+</body>
+</html>
