@@ -13,6 +13,7 @@
 		return $.getJSON(this.url, data)
 			.then(function (data, status) {
 				me.ajaxStatus = status;
+				//me.modelData = data;
 				$.extend(me, data);
 				me.trigger('updated', status);
 			});

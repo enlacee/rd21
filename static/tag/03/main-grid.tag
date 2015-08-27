@@ -8,8 +8,9 @@
 	<hr>
 	<div id="grid_container">
 		<div class="item" each={items} onclick={gotoInspector}>
-			<div class="innerframe"><img class="thumbnail" src={this.blobs.thumbnail}/></div>
+			<div class="innerframe"><img class="thumbnail" src={this.blobs.thumbnail} /></div>
 			<span class="item-title">{this.name}</span>
+			<input class="btnCheckbox" type="checkbox" name="itemCheck" onclick={gotoShowSelected} />
 		</div>
 	</div>
 
@@ -44,14 +45,28 @@
 			tag.update();
 		});
 
-		gotoInspector(e) {
-			env.cur_item.load(e.item.href)
-				.then(function(status){
+		gotoInspector(event) {
+			event.stopPropagation();
+			env.cur_item.load(event.item.href)
+				.then(function(status) {
 				env['tag-inspector'].shadow.style.display='block'
 				env['tag-inspector'].inspector.style.display='block'
 				env['tag-inspector'].update();
 			});
 		}
+
+		// listerner tag
+		gotoShowSelected(event) {
+			event.stopPropagation();
+			if (event.target.checked) {
+				var model = new AjaxModel();
+				model.load(event.item.href).then(function(status) {
+					env['tag-panel-item-seleccionados'].items.push(model);
+					env['tag-panel-item-seleccionados'].update();
+				});
+			}
+		}
+
 	</script>
 	<style scoped>
 		.grid-row {
@@ -79,7 +94,6 @@
 			display: inline-block;
 		}
 		.item .item-title {
-			top: -13px;
 			position: relative;
 			color: black;
 			display: block;
@@ -102,6 +116,9 @@
 			vertical-align: middle;
 			height: 100%;
 			content: "";
+		}
+		.btnCheckbox {
+			position: absolute
 		}
 	</style>
 </main-grid>

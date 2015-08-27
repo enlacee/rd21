@@ -13,14 +13,20 @@
 	<div class="container">
 		<div class="leftPanel">
 			<coleccion-lista></coleccion-lista>
+
+			<h1>selector de imagenes SVG</h1>
+			<panel-item-seleccionados></panel-item-seleccionados>
 		</div>
 
-		<div class="rightPanel">
+		<div class="">
 			<main-grid></main-grid>
 		</div>
+		<div class="clear"></div>
 
 		<inspector></inspector>
 	</div>
+	<br>
+
 
 	<!-- script my tag -->
 	<script type="riot/tag" src="/static/tag/03/coleccion-item.tag"></script>
@@ -28,11 +34,16 @@
 	<script type="riot/tag" src="/static/tag/03/main-grid.tag"></script>
 
 	<script type="riot/tag" src="/static/tag/03/inspector.tag"></script>
+	<script type="riot/tag" src="/static/tag/03/panel-item-seleccionados.tag"></script>
 	<script>
 		(function(){
 			env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))
 			env.add('cur_coleccion', new AjaxModel())
 			env.add('cur_item', new AjaxModel())
+
+			var cur_item_select = [];
+			env.add('cur_item_select', cur_item_select)
+
 			riot.mount('*');
 		})();
 	</script>
@@ -48,12 +59,15 @@
 	}
 	.leftPanel{
 		float:left;
-		width:20%
+		width:30%
 	}
 	.rightPanel{
 		float:left;
-		width:80%
+		width:70%
 	}
+	.left {float:left}
+	.right {float:right}
+	.clear {clear:both}
 	</style>
 </body>
 </html>

@@ -15,7 +15,6 @@
 		});
 
 		abrirInspector(e) {
-			alert("event "+this.href )
 			env.cur_item.load(this.href)
 				.then(function(status) {
 					env['tag-inspector'].update();
