@@ -1,15 +1,87 @@
 <html>
 <body>
-
 <h1>My first SVG</h1>
-
 <svg width="100" height="100">
   <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
 </svg>
-
 <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <image xlink:href="http://localhost:8000/media/blobs/i-15_v-15_thumbnail.jpeg" x="0" y="0" height="100" width="100"></image>
 </svg>
 
+
+
+<hr>
+<h1>flexbox</h1>
+<div class="container">
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-1_v-1_thumbnail.jpeg"></div>
+        <span class="item-title">i-1078_v-926_boceto00001</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-2_v-2_thumbnail.jpeg"></div>
+        <span class="item-title">i-1078_v-926_preview</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-13_v-13_thumbnail.jpeg"></div>
+        <span class="item-title">i-1078_v-926_preview</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-3_v-3_thumbnail.jpeg"></div>
+        <span class="item-title">i-1079_v-927_preview</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-6_v-6_thumbnail.jpeg"></div>
+        <span class="item-title">i-1079_v-927_preview</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-8_v-8_thumbnail.jpeg"></div>
+        <span class="item-title">i-1079_v-927_preview</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-4_v-4_thumbnail.jpeg"></div>
+        <span class="item-title">i-1080_v-928_preview</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-7_v-7_thumbnail.jpeg"></div>
+        <span class="item-title">i-1080_v-928_preview</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-5_v-5_thumbnail.jpeg"></div>
+        <span class="item-title">i-1081_v-929_preview</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-15_v-15_thumbnail.jpeg"></div>
+        <span class="item-title">big_pirata</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-12_v-12_thumbnail.jpeg"></div>
+        <span class="item-title">i-1079_v-927_preview</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-9_v-9_thumbnail.jpeg"></div>
+        <span class="item-title">i-1080_v-928_preview</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <div class="item">
+        <div class="innerframe"><img class="thumbnail" src="/media/blobs/i-14_v-14_thumbnail.jpeg"></div>
+        <span class="item-title">maquillaje-infantil</span> <input class="btnCheckbox" type="checkbox" name="itemCheck">
+    </div>
+    <!--riot placeholder-->
+</div>
+
+
+<style>
+.container{
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item{
+	width: 180px;
+	height:200px;
+}
+
+</style>
 </body>
 </html>
