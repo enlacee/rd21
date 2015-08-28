@@ -34,7 +34,13 @@
 			tag.update();
 		});
 
-		// Crear modelo para cargar los items de la subcoleccion event 'update'
+		env.cur_coleccion.on('onload', function(status) {
+			env.cur_coleccion.load('/web/everything').then(function(status) {
+				localItems = env.cur_coleccion.items;
+			});
+		});
+
+		// cargar los items de la subcolección (event 'update')
 		var subColeccion = new AjaxModel();
 		subColeccion.on('updated', function(status) {
 			if (subColeccion.items.length > 0) {
@@ -49,24 +55,27 @@
 			event.stopPropagation();
 			env.cur_item.load(event.item.href)
 				.then(function(status) {
-				env['tag-inspector'].shadow.style.display='block'
-				env['tag-inspector'].inspector.style.display='block'
-				env['tag-inspector'].update();
+					env['tag-inspector'].shadow.style.display='block'
+					env['tag-inspector'].inspector.style.display='block'
+					env['tag-inspector'].update();
 			});
 		}
 
-		// listerner tag
+		// mostrar imagenes seleccionadas
 		gotoShowSelected(event) {
 			event.stopPropagation();
 			if (event.target.checked) {
 				var model = new AjaxModel();
-				model.load(event.item.href).then(function(status) {
-					env['tag-panel-item-seleccionados'].items.push(model);
-					env['tag-panel-item-seleccionados'].update();
+				model.load(event.item.href)
+					.then(function(status) {
+						env['tag-panel-item-seleccionados'].items.push(model);
+						env['tag-panel-item-seleccionados'].update();
 				});
 			}
 		}
 
+		// cargar items
+		env.cur_coleccion.trigger('onload');
 	</script>
 	<style scoped>
 		.grid-row {

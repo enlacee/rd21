@@ -40,11 +40,8 @@
 			env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))
 			env.add('cur_coleccion', new AjaxModel())
 			env.add('cur_item', new AjaxModel())
-
-			var cur_item_select = [];
-			env.add('cur_item_select', cur_item_select)
-
 			riot.mount('*');
+			
 		})();
 	</script>
 	<style type="text/css">
