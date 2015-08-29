@@ -13,28 +13,27 @@
 	<div class="container">
 		<div class="leftPanel">
 			<coleccion-lista></coleccion-lista>
-
 			<h1>selector de imagenes SVG</h1>
 			<panel-item-seleccionados></panel-item-seleccionados>
 		</div>
 
-		<div class="">
+		<div>
+			<widget-1></widget-1>
 			<main-grid></main-grid>
 		</div>
 		<div class="clear"></div>
 
 		<inspector></inspector>
 	</div>
-	<br>
-
+	<br/>
 
 	<!-- script my tag -->
 	<script type="riot/tag" src="/static/tag/03/coleccion-item.tag"></script>
 	<script type="riot/tag" src="/static/tag/03/coleccion-lista.tag"></script>
 	<script type="riot/tag" src="/static/tag/03/main-grid.tag"></script>
-
 	<script type="riot/tag" src="/static/tag/03/inspector.tag"></script>
 	<script type="riot/tag" src="/static/tag/03/panel-item-seleccionados.tag"></script>
+	<script type="riot/tag" src="/static/tag/03/widget-1.tag"></script>
 	<script>
 		(function(){
 			env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))

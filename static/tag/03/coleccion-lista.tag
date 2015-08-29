@@ -2,8 +2,6 @@
 	<ul>
 		<li each={colecciones} riot-tag="coleccion-item"></li>
 	</ul>
-
-	<button onclick={reload}>cargar</button>
 	<script>
 		var tag = this;
 		env.add('tag-coleccion-lista', this)

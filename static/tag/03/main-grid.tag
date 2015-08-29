@@ -20,6 +20,7 @@
 
 		env.cur_coleccion.on('updated', function(status) {
 			localItems = env.cur_coleccion.items;
+			env['tag-widget-1'].update();
 			if (env.cur_coleccion.has_children==true) {
 				for (var i=0; i<env.cur_coleccion.subcollections.length; i++) {
 					var href = env.cur_coleccion.subcollections[i].href
