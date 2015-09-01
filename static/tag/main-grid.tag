@@ -20,7 +20,6 @@
 					env['tag-inspector'].update();
 			});
 		}
-
 	</script>
 	<style scoped>
 		#grid_container {

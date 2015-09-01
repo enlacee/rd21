@@ -1,11 +1,16 @@
 <!-- wiget-1 : menu breadcrumb -->
 <widget-1>
-	<div class="topbar" style="border:1px solid blue">
+	<div class="topbar">
 		<div class="path">
 			<div><span><a href="#">H</a></span><span>/collection</span></div>
 		</div>
 		<div class="path-others">
-			<div><a href="#">Seleccionar </a>({env.cur_coleccion.items.length} items)</div>
+			<div>
+				<a href="#">Seleccionar </a>
+				({env.cur_coleccion.items.length})
+				<span if={(env.cur_coleccion.items.length <= 1)}>Item</span>
+				<span if={(env.cur_coleccion.items.length > 1)}>Items</span>
+			</div>
 			<div><a href="#">Desseleccionar</a></div>
 			<div><a href="#">Dowmload</a></div>
 			<div><a href="#">0</a></div>
@@ -18,6 +23,7 @@
 	</script>
 	<style type="text/css">
 	.topbar {
+		border:1px solid blue;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;

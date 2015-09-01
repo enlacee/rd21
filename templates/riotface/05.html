@@ -1,8 +1,22 @@
-<html>
-  <head>
-    <title></title>
-    <meta content="">
-    <style></style>
-  </head>
-  <body></body>
-</html>
+<script type="text/html" id="diritem_icon_tmpl">
+	<% var n=items.length;%>
+	<% var nsubs=subcollections.length;%>
+	<svg viewBox="0 0 300 300">
+		<filter id="dropshadow" height="130%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+			<feOffset dx="2" dy="2" result="offsetblur"/>
+			<feMerge>
+				<feMergeNode/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+		<use transform="scale(12)" xlink:href="#folder" style="fill:lightsteelblue;"/>
+
+		<% var sz = Math.max(24*(10-n), 120); %>
+		<% $.each(items, function(i,v) { %>
+			<image width="<%= sz %>" height="<%= sz %>"
+				transform="translate(<%= 60 + (i+0.5)*180/n %>,220) rotate(<%= (i+0.5)*60/n -30 %>) translate(<%= -10-sz*0.5 %>,<%= -(sz+120)/2 %>)"
+				xlink:href="<%=v.blobs.thumbnail%>" style="filter:url(#dropshadow)"/>
+		<% }); %>
+	</svg>
+</script>

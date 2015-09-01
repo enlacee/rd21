@@ -6,8 +6,8 @@
 	</style>
 	<ul id="collections_list">
 		<li each={collections}
-			class="h1 listitem {
-				selected: this.href==env.cur_data_images.href
+			class="h2 listitem {
+				selected: this.href==env.cur_collection.href
 			}"
 			onclick={parent.goto}
 		>
@@ -27,7 +27,7 @@
 		goto(e) {
 			env.cur_collection.load(e.item.href)
 				.then(function() {
-				me.update();
+					me.update();
 				});
 		}
 
@@ -36,8 +36,6 @@
 			me.update();
 		})
 
-		// start
 		this.reload();
-
 	</script>
 </collections-list>

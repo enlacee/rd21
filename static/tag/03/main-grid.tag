@@ -65,13 +65,37 @@
 		// mostrar imagenes seleccionadas
 		gotoShowSelected(event) {
 			event.stopPropagation();
-			if (event.target.checked) {
-				var model = new AjaxModel();
-				model.load(event.item.href)
-					.then(function(status) {
-						env['tag-panel-item-seleccionados'].items.push(model);
-						env['tag-panel-item-seleccionados'].update();
-				});
+			var rsObject = buscarItem(event.item.href);
+
+			if (event.target.checked == true) {
+				if (rsObject == false) {
+					var model = new AjaxModel();
+					model.load(event.item.href)
+						.then(function(status) {
+							env['tag-panel-item-seleccionados'].items.push(model);
+							env['tag-panel-item-seleccionados'].trigger('renderSVGClear');
+							env['tag-panel-item-seleccionados'].trigger('renderSVG');
+
+					});
+				}
+			} else {
+				env['tag-panel-item-seleccionados'].items.splice(rsObject.indice, 1);
+				env['tag-panel-item-seleccionados'].trigger('renderSVGClear');
+				env['tag-panel-item-seleccionados'].trigger('renderSVG');
+			}
+
+			/**
+			* Busca objeto por indice URL si lo encuentra lo devuelve
+			* @return object|boolean
+			*/
+			function buscarItem(href) {
+				var array = env['tag-panel-item-seleccionados'].items || [];
+				for (var i = 0; (i < array.length); i++) {
+					if (array[i].href == href) {
+						return {indice: i, data: array[i]};
+					}
+				}
+				return false;
 			}
 		}
 
