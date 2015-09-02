@@ -4,8 +4,8 @@
 * @example
 * coleccion
 *	subcoleccion
-		item1
-		item2
+*		item1
+*		item2
 */
 var model_subColeccion = new AjaxModel();
 

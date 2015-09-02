@@ -13,26 +13,24 @@
 	<div class="container blue">
 		<div class="leftPanel">
 			<div riot-tag="coleccion-lista"></div>
-			<div riot-tag="panel-item-seleccionados"></div>
+			<div riot-tag="frame-items-seleccionados"></div>
 		</div>
 
 		<div>
 			<div riot-tag="main-grid-header"></div>
-			<main-grid></main-grid>
+			<div riot-tag="main-grid"></div>
+			<div riot-tag="inspector"></div>
 		</div>
-
-		<inspector></inspector>
 	</div>
 
-	<script type="riot/tag" src="/static/js/tag/coleccion-lista.tag"></script>
-
 	<script type="riot/tag" src="/static/js/tag/model/subColeccion.js"></script>
-	<script type="riot/tag" src="/static/js/tag/main-grid-header.tag"></script>
-	<script type="riot/tag" src="/static/js/tag//main-grid.tag"></script>
 
-	<script type="riot/tag" src="/static/tag/03/inspector.tag"></script>
-	<script type="riot/tag" src="/static/tag/03/panel-item-seleccionados.tag"></script>
-	<script type="riot/tag" src="/static/tag/03/widget-1.tag"></script>
+	<script type="riot/tag" src="/static/js/tag/coleccion-lista.tag"></script>
+	<script type="riot/tag" src="/static/js/tag/main-grid-header.tag"></script>
+	<script type="riot/tag" src="/static/js/tag/main-grid.tag"></script>
+
+	<script type="riot/tag" src="/static/js/tag/inspector.tag"></script>
+	<script type="riot/tag" src="/static/js/tag/frame-items-seleccionados.tag"></script>
 	<script>
 		(function(){
 			env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))
@@ -42,6 +40,19 @@
 		})();
 	</script>
 	<style type="text/css">
+	* {
+		background-color: white;
+	}
+	.container {
+		width:90%;
+		margin:0 auto;
+	}
+	.leftPanel {
+		float:left;
+		width:30%
+	}
+
+	/* debug */
 	.red {
 		border:1px solid red;
 	}
@@ -50,15 +61,6 @@
 	}
 	.black {
 		border:1px solid black;
-	}
-
-	.container{
-		width:90%;
-		margin:0 auto;
-	}
-	.leftPanel{
-		float:left;
-		width:30%
 	}
 	</style>
 </body>

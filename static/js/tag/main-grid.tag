@@ -7,20 +7,21 @@
 	</div>
 	<hr>
 	<div id="grid_container">
-		<div class="item" each={ items } onclick={gotoInspector}>
+		<div class="item" each={ items } onclick={ abrirInspector }>
 			<div class="innerframe">
 				<img class="thumbnail" src="{ this.blobs.thumbnail }" />
 			</div>
 			<span class="item-title">{ this.name }</span>
 			<input type="checkbox" name="itemCheck" value="" class="btnCheckbox"
-				onclick="{ gotoShowSelect }">
+				onclick="{ seleccionarItem }">
 		</div>
 	</div>
 
 	<script>
-	// require : /static/js/tag/model/subColeccion.js
+	// require
+	// model_subColeccion : /static/js/tag/model/subColeccion.js
 		var tag = this;
-		env.add('tag-coleccion-lista', tag);
+		env.add('tag-main-grid', tag);
 		tag.items = [];
 
 		env.cur_coleccion.on('updated', function(status) {
@@ -48,7 +49,7 @@
 		});
 
 		// Event handler
-		gotoInspector(event) {
+		abrirInspector(event) {
 			event.stopPropagation();
 			env.cur_item.load(event.item.href)
 				.then(function(status) {
@@ -56,6 +57,41 @@
 					env['tag-inspector'].inspector.style.display = 'block';
 					env['tag-inspector'].update();
 				});
+		}
+
+		seleccionarItem(event) {
+			event.stopPropagation();
+			var rsObjeto = buscarItem(event.item.href);
+
+			if (event.target.checked == true) {
+				if (rsObjeto == false) {
+					var model = new AjaxModel();
+					model.load(event.item.href)
+						.then(function() {
+							env['frame-items-seleccionados'].items.push(model);
+							env['frame-items-seleccionados'].trigger('svgClear');
+							env['frame-items-seleccionados'].trigger('svgRender');
+						});
+				}
+			} else {
+				env['frame-items-seleccionados'].items.splice(rsObjeto.indice, 1);
+				env['frame-items-seleccionados'].trigger('svgClear');
+				env['frame-items-seleccionados'].trigger('svgRender');
+			}
+		}
+
+		/**
+		* Busca objeto por indice URL si lo encuentra lo devuelve
+		* @return object|boolean
+		*/
+		function buscarItem(href) {
+			var array = env['frame-items-seleccionados'].items || [];
+			for (var i = 0; i < array.length; i++) {
+				if (array[i].href == href) {
+					return {indice: i, data: array[i]}
+				}
+			}
+			return false;
 		}
 
 		// start

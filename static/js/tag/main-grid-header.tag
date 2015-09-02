@@ -7,8 +7,8 @@
 			<div>
 				<a href="#">Seleccionar </a>
 				({env.cur_coleccion.items.length})
-				<span if={(env.cur_coleccion.items.length <= 1)}>Item</span>
-				<span if={(env.cur_coleccion.items.length > 1)}>Items</span>
+				<span if={ (env.cur_coleccion.items.length <= 1) }>Item</span>
+				<span if={ (env.cur_coleccion.items.length > 1) }>Items</span>
 			</div>
 			<div><a href="#">Desseleccionar</a></div>
 			<div><a href="#">Dowmload</a></div>
