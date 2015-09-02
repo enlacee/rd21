@@ -1,11 +1,10 @@
 <panel-item-seleccionados>
+	<h2>Selector de imagenes SVG</h2>
 	<div class="red" style="width:250px" >
 		<svg viewBox="0 0 300 300" id="panel">
 		</svg>
 	</div>
 
-	
-	
 	<script>
 		var tag = this;
 		env.add('tag-panel-item-seleccionados', tag);
