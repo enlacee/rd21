@@ -5,8 +5,3 @@ from django.template.response import TemplateResponse
 
 def main(request):
 	return TemplateResponse(request, 'riotface/main.html', {})
-
-# views examples riotJS
-
-def example04(request):
-	return TemplateResponse(request, 'riotface/04.html', {})

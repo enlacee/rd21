@@ -53,9 +53,7 @@
 			event.stopPropagation();
 			env.cur_item.load(event.item.href)
 				.then(function(status) {
-					env['tag-inspector'].shadow.style.display = 'block';
-					env['tag-inspector'].inspector.style.display = 'block';
-					env['tag-inspector'].update();
+					env['tag-inspector'].mostrarVentana(event);
 				});
 		}
 

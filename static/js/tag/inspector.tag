@@ -21,14 +21,21 @@
 		var tag = this;
 		env.add('tag-inspector', this);
 
+		/**
+		* Actualizar item y tag
+		*/
 		env.cur_item.on('updated', function(status) {
 			tag.data = env.cur_item
 			tag.update()
 		});
 
-		ocultarVentana(e) {
+		ocultarVentana(event) {
 			tag.shadow.style.display = 'none';
 			tag.inspector.style.display = 'none';
+		}
+		mostrarVentana(event) {
+			tag.shadow.style.display = 'block';
+			tag.inspector.style.display = 'block';
 		}
 	</script>
 	<style scoped>
