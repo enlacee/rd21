@@ -146,7 +146,9 @@
 			content: "";
 		}
 		.btnCheckbox {
-			position: absolute
+			display: inline-block;
+		    position: relative;
+		    left: 57px;
 		}
 	</style>
 </main-grid>

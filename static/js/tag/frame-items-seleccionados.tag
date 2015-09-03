@@ -2,6 +2,7 @@
 	<h2>Selector de imagenes SVG</h2>
 	<div class="red" style="width:250px" >
 		<svg viewBox="0 0 300 300" id="panel">
+
 		</svg>
 	</div>
 
@@ -15,7 +16,16 @@
 		*/
 		tag.on('svgClear', function(status) {
 			var list = tag.panel;
-			list.innerHTML = '';
+			var shadow = ''
+			+'<filter id="dropShadow">'
+			+'	<feGaussianBlur in="SourceAlpha" stdDeviation="3" />'
+			+'	<feOffset dx="2" dy="4" />'
+			+'	<feMerge>'
+			+'		<feMergeNode />'
+			+'		<feMergeNode in="SourceGraphic" />'
+			+'	</feMerge>'
+			+'  </filter>';
+			list.innerHTML  = shadow;
 		});
 
 		tag.on('svgRender', function(status) {
@@ -32,6 +42,8 @@
 					svgimg.setAttributeNS(null, 'x', '0');
 					svgimg.setAttributeNS(null, 'y', '0');
 					svgimg.setAttributeNS(null, 'visibility', 'visible');
+					svgimg.setAttributeNS(null, 'filter', 'url(#dropShadow)');
+
 					var attrTransform = 'translate('+ (60 + (i+0.5)*180/n) +',220) '
 						+ 'rotate('+ ((i+0.5)*60/n -30) +') '
 						+ 'translate('+ (-10-sz*0.5) +','+ (-(sz+120)/2) +')';
@@ -42,4 +54,5 @@
 		});
 
 	</script>
+
 </frame-items-seleccionados>

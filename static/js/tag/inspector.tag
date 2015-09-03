@@ -8,7 +8,9 @@
 		{data.name}
 		<hr>
 		<div style="width:40%" class="blue">
-			<img src="{ data.blobs.preview }" width=100% alt="{ data.name }" />
+			<a href="{ data.blobs.preview }" target="_blank">
+				<img src="{ data.blobs.preview }" width=100% alt="{ data.name }" />
+			</a>
 		</div>
 
 		<div style="width:50%" class="blue">

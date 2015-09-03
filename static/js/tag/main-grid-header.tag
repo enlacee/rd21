@@ -22,7 +22,6 @@
 	</script>
 	<style type="text/css">
 	.topbar {
-		border:1px solid blue;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
