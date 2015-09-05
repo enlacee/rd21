@@ -13,7 +13,10 @@
 	<div class="container blue">
 		<div class="leftPanel">
 			<div riot-tag="coleccion-lista"></div>
-			<div riot-tag="frame-items-seleccionados"></div>
+			<!--<div riot-tag="frame-items-seleccionados"></div>-->
+			<div riot-tag="svg-ver-seleccion" class="red">
+
+			</div>
 		</div>
 
 		<div>
@@ -23,19 +26,81 @@
 		</div>
 	</div>
 
-	<script type="riot/tag" src="/static/js/tag/model/subColeccion.js"></script>
+
+	<script type="text/javascript" src="/static/js/tag/model/subColeccion.js"></script>
+
 	<script type="riot/tag" src="/static/js/tag/coleccion-lista.tag"></script>
 	<script type="riot/tag" src="/static/js/tag/main-grid-header.tag"></script>
 	<script type="riot/tag" src="/static/js/tag/main-grid.tag"></script>
 	<script type="riot/tag" src="/static/js/tag/inspector.tag"></script>
-	<script type="riot/tag" src="/static/js/tag/frame-items-seleccionados.tag"></script>
+	<script type="riot/tag" src="/static/js/tag/svg-ver-seleccion.tag"></script>
 	<script>
 		(function(){
 			env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))
 			env.add('cur_coleccion', new AjaxModel('/web/everything'))
 			env.add('cur_item', new AjaxModel())
+			env.add('cur_items_selected', new AjaxModel())
 			riot.mount('*');
 		})();
+	</script>
+	<script type="text/javascript">
+		/**
+		* ## cur_item
+		*/
+		env.cur_item.rs = '';
+		env.cur_item.traerDatos = function(href) {
+			var me = this;
+			this.load(href)
+				.then(function() {
+					me.rs = me.data; //DATA
+					env.inspector.trigger('mostrarItem', { data: me.rs });
+			});
+		}
+
+		// *******************************************************************//
+		/**
+		* ## cur_items_selected
+		*/
+		env.cur_items_selected.rs = [];
+		env.cur_items_selected.agregar = function(model) {
+			this.rs.push(model);
+			env.svg_ver_seleccion.trigger('mostrar', { data: this.rs });
+		}
+
+		env.cur_items_selected.remover = function(indice) {
+			this.rs.splice(indice, 1);
+			env.svg_ver_seleccion.trigger('mostrar', { data: this.rs });
+		}
+
+		// *******************************************************************//
+		/**
+		* Busca objeto por indice URL si lo encuentra lo devuelve
+		* @return object|boolean
+		*/
+		env.cur_items_selected.buscarItem = function(href) {
+			var array = this.rs;
+			for (var i = 0; i < array.length; i++) {
+				if (array[i].href == href) {
+					return {indice: i, data: array[i]}
+				}
+			}
+			return false;
+		}
+		// *******************************************************************//
+		/**
+		* ## cur_coleccion
+		*/
+		env.cur_coleccion.rs = [];
+		env.cur_coleccion.traerDatos = function() {
+			var me = this;
+			this.load()
+				.then(function() {
+					me.rs = me.data.items;
+					env.main_grid_header.trigger('render', { data: me.rs });
+			});
+		}
+
+
 	</script>
 	<style type="text/css">
 	* {

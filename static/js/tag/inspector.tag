@@ -18,25 +18,27 @@
 		</div>
 	</div>
 	<script>
-		var tag = this;
-		env.add('tag-inspector', this);
+		var me = this;
+		me.data = [];
+		env.add('inspector', me);
 
-		/**
-		* Actualizar item y tag
-		*/
-		env.cur_item.on('updated', function(status) {
-			tag.data = env.cur_item
-			tag.update()
+		me.on('mostrarItem', function(objeto) {
+			me.shadow.style.display = 'block';
+			me.inspector.style.display = 'block';
+			me.data = objeto.data;
+			me.update();
 		});
 
+		// Event Handler
 		ocultarVentana(event) {
-			tag.shadow.style.display = 'none';
-			tag.inspector.style.display = 'none';
+			me.shadow.style.display = 'none';
+			me.inspector.style.display = 'none';
 		}
+/*
 		mostrarVentana(event) {
-			tag.shadow.style.display = 'block';
-			tag.inspector.style.display = 'block';
-		}
+			me.shadow.style.display = 'block';
+			me.inspector.style.display = 'block';
+		}*/
 	</script>
 	<style scoped>
 	.shadow {

@@ -21,79 +21,49 @@
 	// require
 	// model_subColeccion : /static/js/tag/model/subColeccion.js
 		var tag = this;
-		env.add('tag-main-grid', tag);
+		env.add('main-grid', tag);
 		tag.items = [];
 
 		env.cur_coleccion.on('updated', function(status) {
-			tag.items = env.cur_coleccion.items;
-			env['tag-main-grid-header'].update();
+			tag.items = env.cur_coleccion.data.items;
+			env.main_grid_header.update();
+			//
 			if (env.cur_coleccion.has_children == true) {
 				var cnt = env.cur_coleccion.subcollections.length;
 				for (var i = 0; i < cnt; i++) {
 					var href = env.cur_coleccion.subcollections[i].href;
 					$.when(model_subColeccion.load(href)).done(function(response) {
 						tag.update();
-						env['tag-main-grid-header'].update();
+						env.main_grid_header.update();
 					});
 				}
 			}
-
+			//
 			tag.subcoleccion = env.cur_coleccion.subcollections;
 			tag.update();
-		});
-
-		env.cur_coleccion.on('start', function(status) {
-			env.cur_coleccion.load().then(function() {
-				tag.items = env.cur_coleccion.items;
-			});
 		});
 
 		// Event handler
 		abrirInspector(event) {
 			event.stopPropagation();
-			env.cur_item.load(event.item.href)
-				.then(function(status) {
-					env['tag-inspector'].mostrarVentana(event);
-				});
+			env.cur_item.traerDatos(event.item.href);
 		}
 
 		seleccionarItem(event) {
 			event.stopPropagation();
-			var rsObjeto = buscarItem(event.item.href);
+			var rsObjeto = env.cur_items_selected.buscarItem(event.item.href);
 
 			if (event.target.checked == true) {
 				if (rsObjeto == false) {
-					var model = new AjaxModel();
-					model.load(event.item.href)
-						.then(function() {
-							env['frame-items-seleccionados'].items.push(model);
-							env['frame-items-seleccionados'].trigger('svgClear');
-							env['frame-items-seleccionados'].trigger('svgRender');
-						});
+					env.cur_items_selected.agregar(event.item);
 				}
 			} else {
-				env['frame-items-seleccionados'].items.splice(rsObjeto.indice, 1);
-				env['frame-items-seleccionados'].trigger('svgClear');
-				env['frame-items-seleccionados'].trigger('svgRender');
+				env.cur_items_selected.remover(rsObjeto.indice);
 			}
-		}
-
-		/**
-		* Busca objeto por indice URL si lo encuentra lo devuelve
-		* @return object|boolean
-		*/
-		function buscarItem(href) {
-			var array = env['frame-items-seleccionados'].items || [];
-			for (var i = 0; i < array.length; i++) {
-				if (array[i].href == href) {
-					return {indice: i, data: array[i]}
-				}
-			}
-			return false;
 		}
 
 		// start
-		env.cur_coleccion.trigger('start');
+		env.cur_coleccion.traerDatos();
 	</script>
 	<style scoped>
 		.grid-row {

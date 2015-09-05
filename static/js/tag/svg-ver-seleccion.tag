@@ -1,20 +1,23 @@
-<frame-items-seleccionados>
-	<h2>Selector de imagenes SVG</h2>
-	<div class="red" style="width:250px" >
-		<svg viewBox="0 0 300 300" id="panel">
+<svg-ver-seleccion>
+	<svg viewBox="0 0 300 300" id="panel">
 
-		</svg>
-	</div>
-
+	</svg>
 	<script>
 		var tag = this;
-		env.add('frame-items-seleccionados', tag);
+		env.add('svg_ver_seleccion', tag);
 		tag.items = [];
 
 		/**
 		* eliminar items image del tag 'svg'
 		*/
-		tag.on('svgClear', function(status) {
+		tag.on('mostrar', function(object) {
+			this.items = object.data;
+			tag.limpiarSvg();
+			tag.dibujarSvg();
+			tag.update();
+		});
+
+		tag.limpiarSvg = function() {
 			var list = tag.panel;
 			var shadow = ''
 			+'<filter id="dropShadow">'
@@ -26,9 +29,9 @@
 			+'	</feMerge>'
 			+'  </filter>';
 			list.innerHTML  = shadow;
-		});
+		}
 
-		tag.on('svgRender', function(status) {
+		tag.dibujarSvg = function() {
 			var dataItems = tag.items;
 			var n = dataItems.length;
 			if (n > 0) {
@@ -51,8 +54,6 @@
 					tag.panel.appendChild(svgimg);
 				});
 			}
-		});
-
+		}
 	</script>
-
-</frame-items-seleccionados>
+</svg-ver-seleccion>
