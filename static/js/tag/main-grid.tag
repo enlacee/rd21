@@ -61,9 +61,7 @@
 				env.cur_items_selected.remover(rsObjeto.indice);
 			}
 		}
-
-		// start
-		env.cur_coleccion.traerDatos();
+		
 	</script>
 	<style scoped>
 		.grid-row {
