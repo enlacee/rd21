@@ -1,4 +1,25 @@
 <main-grid-header>
+	<style scoped>
+	.topbar {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+	.topbar > div.path {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+	.topbar > div.path-others {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin-left: auto;
+	}
+	.topbar > div.path-others > div {
+		padding:0 5px;
+	}
+	</style>
 	<div class="topbar">
 		<div class="path">
 			<div><span><a href="#">H</a></span><span>/collection</span></div>
@@ -22,27 +43,6 @@
 		me.on('render', function(objeto) {
 			me.items = objeto.data;
 			me.update();
-		});		
+		});
 	</script>
-	<style scoped>
-	.topbar {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-	}
-	.topbar > div.path {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-	}
-	.topbar > div.path-others {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		margin-left: auto;
-	}
-	.topbar > div.path-others > div {
-		padding:0 5px;
-	}
-	</style>
 </main-grid-header>

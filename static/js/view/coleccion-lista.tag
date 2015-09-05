@@ -21,6 +21,11 @@
 <!-- ---------------------------------------------------------------------- -->
 <!-- TAG-coleccion-item -->
 <coleccion-item>
+	<style scoped>
+		.selected {
+			font-weight:bold;
+		}
+	</style>
 	<span onclick={ goto } class="{ selected: this.href == env.cur_coleccion.href }">
 		{ name }
 	</span>
@@ -35,9 +40,4 @@
 		env.cur_coleccion.traerDatos(this.href);
 	}
 	</script>
-	<style scoped>
-		.selected {
-			font-weight:bold;
-		}
-	</style>
 </coleccion-item>

@@ -17,7 +17,7 @@
 			tag.update();
 		});
 
-		tag.limpiarSvg = function() {
+		limpiarSvg() {
 			var list = tag.panel;
 			var shadow = ''
 			+'<filter id="dropShadow">'
@@ -31,7 +31,7 @@
 			list.innerHTML  = shadow;
 		}
 
-		tag.dibujarSvg = function() {
+		dibujarSvg() {
 			var dataItems = tag.items;
 			var n = dataItems.length;
 			if (n > 0) {
