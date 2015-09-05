@@ -11,9 +11,5 @@ env.colecciones.traerDatos = function(href) {
 			console.log('href: me.data', me.data)
 			me.rs = me.data;
 			env.coleccion_lista.trigger('render', { data: me.rs });
-/*
-			me.rs = me.data.items;
-			env.main_grid_header.trigger('render', { data: me.rs });
-			*/
 	});
 }
