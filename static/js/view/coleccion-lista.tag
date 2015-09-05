@@ -35,7 +35,7 @@
 		env.cur_coleccion.traerDatos(this.href);
 	}
 	</script>
-	<style>
+	<style scoped>
 		.selected {
 			font-weight:bold;
 		}

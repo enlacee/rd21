@@ -22,9 +22,7 @@
 		me.on('render', function(objeto) {
 			me.items = objeto.data;
 			me.update();
-		});
-
-		
+		});		
 	</script>
 	<style scoped>
 	.topbar {

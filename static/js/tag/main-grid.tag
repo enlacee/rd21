@@ -61,7 +61,7 @@
 				env.cur_items_selected.remover(rsObjeto.indice);
 			}
 		}
-		
+
 	</script>
 	<style scoped>
 		.grid-row {

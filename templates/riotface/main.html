@@ -29,11 +29,13 @@
 
 	<script type="text/javascript" src="/static/js/tag/model/subColeccion.js"></script>
 
-	<script type="riot/tag" src="/static/js/tag/coleccion-lista.tag"></script>
-	<script type="riot/tag" src="/static/js/tag/main-grid-header.tag"></script>
 	<script type="riot/tag" src="/static/js/tag/main-grid.tag"></script>
-	<script type="riot/tag" src="/static/js/tag/inspector.tag"></script>
-	<script type="riot/tag" src="/static/js/tag/svg-ver-seleccion.tag"></script>
+
+	<!-- -->
+	<script type="riot/tag" src="/static/js/view/coleccion-lista.tag"></script>
+	<script type="riot/tag" src="/static/js/view/svg-ver-seleccion.tag"></script>
+	<script type="riot/tag" src="/static/js/view/main-grid-header.tag"></script>
+	<script type="riot/tag" src="/static/js/view/inspector.tag"></script>
 	<script>
 		(function(){
 			env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))
