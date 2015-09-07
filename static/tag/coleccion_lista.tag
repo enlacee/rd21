@@ -11,7 +11,6 @@
 			me.colecciones = objecto.collections;
 			me.update();
 		});
-
 	</script>
 </coleccion-lista>
 
@@ -26,11 +25,17 @@
 			font-weight:bold;
 		}
 	</style>
-	<span>{name}</span>
+	
+	<span onclick="{ goto }"class="{ selected: this.href == env.cur_coleccion.href }">
+		{ name }
+	</span>
 	<ul>
 		<li each={ children } riot-tag="coleccion-item"></li>
 	</ul>
-	<script>
 
+	<script>
+		goto(event) {
+			env.cur_coleccion.selectedItem(event.item.href);
+		}
 	</script>
 </coleccion-item>
