@@ -4,6 +4,7 @@
 		riot.observable(this);
 	};
 	var E = Env.prototype;
+
 	E.add = function (name, o) {
 		this[name] = o;
 		this.trigger('added', name, o);

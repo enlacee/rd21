@@ -11,69 +11,19 @@
 		<script type="text/javascript" src="{% static 'js/model.js' %}"></script>
 {% endblock %}
 {% block content %}
-
-<div class="container blue">
-	<div class="leftPanel">
-		<div riot-tag="coleccion-lista"></div>
-		<div riot-tag="svg-ver-seleccion" class="red"></div>
-	</div>
-
-	<div>
-		<div riot-tag="main-grid-header"></div>
-		<div riot-tag="main-grid"></div>
-		<div riot-tag="inspector"></div>
-	</div>
+<div style="margin-top: 56px;">
+	<collections-list></collections-list>
+	<main-grid></main-grid>
 </div>
-
-<script type="riot/tag" src="/static/js/tag/main-grid.tag"></script>
-<!-- -->
-<script type="riot/tag" src="{% static 'js/view/coleccion-lista.tag' %}"></script>
-<script type="riot/tag" src="{% static 'js/view/svg-ver-seleccion.tag' %}"></script>
-<script type="riot/tag" src="{% static 'js/view/main-grid-header.tag' %}"></script>
-<script type="riot/tag" src="{% static 'js/view/inspector.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/collection-item.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/collections-list.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/main-grid.tag' %}"></script>
 <script>
 	(function(){
-		env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))
-		env.add('cur_coleccion', new AjaxModel('{% url "everything" %}'))
-		env.add('cur_item', new AjaxModel())
-		env.add('cur_items_selected', new AjaxModel())
-		riot.mount('*');
+	env.add('collections', new AjaxModel('{% url "user_collections" %}'))
+		.add('cur_collection', new AjaxModel())
+		.add('cur_item', new AjaxModel())
+	riot.mount('*');
 	})();
 </script>
-<script type="text/javascript" src="{% static 'js/model/colecciones.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/model/cur_item.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/model/cur_items_selected.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/model/cur_coleccion.js' %}"></script>
-
-<script type="text/javascript">
-	env.colecciones.traerDatos();
-	env.cur_coleccion.traerDatos();
-
-</script>
-<style type="text/css">
-* {
-	background-color: white;
-}
-.container {
-	width:90%;
-	margin:0 auto;
-    margin-top: 59px;
-}
-.leftPanel {
-	float:left;
-	width:30%
-}
-
-/* debug */
-.red {
-	border:1px solid red;
-}
-.blue {
-	border:1px solid blue;
-}
-.black {
-	border:1px solid black;
-}
-</style>
-
 {% endblock %}
