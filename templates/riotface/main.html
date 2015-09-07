@@ -17,9 +17,13 @@
 		<div riot-tag="coleccion-lista" class="debug"></div>
 	</div>
 
+	<div>
+		<div riot-tag="main-grid"></div>
+	</div>
 </div>
 
 <script type="riot/tag" src="{% static 'tag/coleccion_lista.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/main_grid.tag' %}"></script>
 <script>
 	(function(){
 	env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))
@@ -30,6 +34,7 @@
 <script type="text/javascript" src="{% static 'model/colecciones.js' %}"> </script>
 <script type="text/javascript" src="{% static 'model/cur_coleccion.js' %}"> </script>
 <script type="text/javascript">
+	// start
 	env.colecciones.traerDatos();
 </script>
 <style type="text/css">

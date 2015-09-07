@@ -1,6 +1,5 @@
 /**
 * # colecciones.js
-* carga de datos automatico por AjaxModel.js
 */
 
 env.colecciones.traerDatos = function(href) {

@@ -25,7 +25,7 @@
 			font-weight:bold;
 		}
 	</style>
-	
+
 	<span onclick="{ goto }"class="{ selected: this.href == env.cur_coleccion.href }">
 		{ name }
 	</span>
@@ -35,7 +35,8 @@
 
 	<script>
 		goto(event) {
-			env.cur_coleccion.selectedItem(event.item.href);
+			env.cur_coleccion.selectedMenu(event.item.href);
+			env.cur_coleccion.traerDatos(event.item.href);
 		}
 	</script>
 </coleccion-item>
