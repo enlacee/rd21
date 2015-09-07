@@ -72,41 +72,14 @@
 	</div>
 
 	<script>
-		var tag = this;
-		env.add('main_grid', tag);
-		tag.items = [];
+		var me = this;
+		me.items = [];
+		me.subcoleccion = [];
+		env.add('main_grid', me);
 
-		var model_subColeccion = new AjaxModel();
-
-		model_subColeccion.on('updated', function() {
-			if (model_subColeccion.items.length > 0) {
-				for (var i = 0; i < model_subColeccion.items.length; i++) {
-					env['main_grid'].items.push(model_subColeccion.items[i]);
-				}
-			}
-		});
-
-		//
-		//env.main_grid.on('render', function() {})
-		//
-
-		env.cur_coleccion.on('updated', function(status) {
-			tag.items = env.cur_coleccion.data.items;
-			env.main_grid_header.update();
-			//
-			if (env.cur_coleccion.has_children == true) {
-				var cnt = env.cur_coleccion.subcollections.length;
-				for (var i = 0; i < cnt; i++) {
-					var href = env.cur_coleccion.subcollections[i].href;
-					$.when(model_subColeccion.load(href)).done(function(response) {
-						tag.update();
-						env.main_grid_header.update();
-					});
-				}
-			}
-			//
-			tag.subcoleccion = env.cur_coleccion.subcollections;
-			tag.update();
+		env.main_grid.on('render', function(objeto) {
+			me.items = objeto.data.items;
+			me.update();
 		});
 
 		// Event handler
@@ -127,6 +100,5 @@
 				env.cur_items_selected.remover(rsObjeto.indice);
 			}
 		}
-
 	</script>
 </main-grid>
