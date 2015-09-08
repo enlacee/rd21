@@ -55,23 +55,44 @@
 	</style>
 
 	<div id="grid_container">
-		<div class="item" each={ items }>
+		<div class="item" each={ items } onclick="{ abrirInspector }">
 			<div class="innerframe">
 				<img class="thumbnail" src="{ this.blobs.thumbnail }" />
 			</div>
 			<span class="item-title">{ this.name }</span>
-			<input type="checkbox" name="itemCheck" value="" class="btnCheckbox">
+			<input type="checkbox" name="itemCheck" class="btnCheckbox"
+				onclick="{ seleccionarItem }">
 		</div>
 	</div>
 
 	<script>
 		var me = this;
 		me.items = [];
-		env.add('tag_main_grid', me);
 
-		env.tag_main_grid.on('render', function(objeto) {
-			me.items = objeto.items;			
-			me.update();
+		env.cur_coleccion.on('updated', function(status) {
+			if (status == 'success') {
+				me.items = env.cur_coleccion.items;
+				me.update();
+			}
 		});
+
+		abrirInspector(event) {
+			event.stopPropagation();
+			env.cur_item.load(event.item.href);
+		}
+
+		// renderizar items seleccionados en SVG
+		seleccionarItem(event) {
+			event.stopPropagation();
+			var rsObjeto = env.seleccion.buscarItem(event.item.href);
+
+			if (event.target.checked == true) {
+				if (rsObjeto == false) {
+					env.seleccion.agregar(event.item);
+				}
+			} else {
+				env.seleccion.remover(rsObjeto.indice);
+			}
+		}
 	</script>
 </main-grid>

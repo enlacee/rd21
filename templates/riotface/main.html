@@ -15,27 +15,35 @@
 <div class="container blue">
 	<div class="leftPanel">
 		<div riot-tag="coleccion-lista" class="debug"></div>
+		<div riot-tag="svg-seleccion" class="debug"></div>
 	</div>
 
 	<div>
 		<div riot-tag="main-grid"></div>
+		<div riot-tag="inspector"></div>
 	</div>
 </div>
 
 <script type="riot/tag" src="{% static 'tag/coleccion_lista.tag' %}"></script>
 <script type="riot/tag" src="{% static 'tag/main_grid.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/inspector.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/svg_seleccion.tag' %}"></script>
+
 <script>
 	(function(){
 	env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))
 		.add('cur_coleccion', new AjaxModel())
+		.add('cur_item', new AjaxModel())
+		.add('seleccion', new AjaxModel())
 	riot.mount('*');
 	})();
 </script>
-<script type="text/javascript" src="{% static 'model/colecciones.js' %}"> </script>
-<script type="text/javascript" src="{% static 'model/cur_coleccion.js' %}"> </script>
+
+<script type="text/javascript" src="{% static 'model/seleccion.js' %}"></script>
 <script type="text/javascript">
 	// start
-	env.colecciones.traerDatos();
+	env.colecciones.load();
+
 </script>
 <style type="text/css">
 * {

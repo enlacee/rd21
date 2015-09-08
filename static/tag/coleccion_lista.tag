@@ -1,15 +1,17 @@
 <coleccion-lista>
-	<ul>
+	<ul id="selector-coleccion-lista">
 		<li each={ colecciones } riot-tag="coleccion-item"></li>
 	</ul>
 	<script>
 		var me = this;
 		me.colecciones = [];
-		env.add('tag_coleccion_lista', me);
 
-		env.tag_coleccion_lista.on('render', function(objecto) {
-			me.colecciones = objecto.collections;
-			me.update();
+		env.colecciones.on('updated', function(status) {
+			if (status == 'success') {
+				me.colecciones = env.colecciones.collections;
+				me.update();
+			}
+			var ul = me.root.querySelector('ul');
 		});
 	</script>
 </coleccion-lista>
@@ -25,18 +27,22 @@
 			font-weight:bold;
 		}
 	</style>
-
-	<span onclick="{ goto }"class="{ selected: this.href == env.cur_coleccion.href }">
-		{ name }
-	</span>
+	<span onclick="{ goto }" data-href="{ this.href }">{ name }</span>
 	<ul>
 		<li each={ children } riot-tag="coleccion-item"></li>
 	</ul>
 
 	<script>
+		var me = this;
+
 		goto(event) {
-			env.cur_coleccion.selectedMenu(event.item.href);
-			env.cur_coleccion.traerDatos(event.item.href);
+			var href = event.item.href;
+			$('#selector-coleccion-lista').find('li span').removeClass('selected');
+
+			env.cur_coleccion.load(event.item.href)
+				.then(function() {
+					$(me.root.children[0]).addClass('selected');
+			});
 		}
 	</script>
 </coleccion-item>
