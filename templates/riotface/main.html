@@ -32,7 +32,7 @@
 <script>
 	(function(){
 	env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))
-		.add('cur_coleccion', new AjaxModel())
+		.add('cur_coleccion', new AjaxModel('{% url "everything" %}'))
 		.add('cur_item', new AjaxModel())
 		.add('seleccion', new AjaxModel())
 	riot.mount('*');
@@ -43,6 +43,7 @@
 <script type="text/javascript">
 	// start
 	env.colecciones.load();
+	env.cur_coleccion.load();
 
 </script>
 <style type="text/css">

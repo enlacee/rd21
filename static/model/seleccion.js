@@ -1,16 +1,16 @@
 /**
 * ## seleccion
 */
-env.seleccion.rs = [];
+env.seleccion.items = [];
 
 env.seleccion.agregar = function(model) {
-	this.rs.push(model);
-	env.seleccion.trigger('render', {data : this.rs });
+	this.items.push(model);
+	env.seleccion.trigger('render', {data : this.items });
 }
 
 env.seleccion.remover = function(indice) {
 	this.rs.splice(indice, 1);
-	env.seleccion.trigger('render', {data : this.rs });
+	env.seleccion.trigger('render', {data : this.items });
 }
 
 /**
@@ -18,7 +18,7 @@ env.seleccion.remover = function(indice) {
 * @return object|boolean
 */
 env.seleccion.buscarItem = function(href) {
-	var array = this.rs;
+	var array = this.items;
 	for (var i = 0; i < array.length; i++) {
 		if (array[i].href == href) {
 			return {indice: i, data: array[i]}
