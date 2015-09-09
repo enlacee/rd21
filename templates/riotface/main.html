@@ -13,21 +13,21 @@
 {% block content %}
 
 <div class="container blue">
-	<div class="leftPanel">
+	<div style="width:30%">
 		<div riot-tag="coleccion-lista" class="debug"></div>
-		<div riot-tag="svg-seleccion" class="debug"></div>
+		<div riot-tag="svg-list" class="debug"></div>
 	</div>
 
-	<div>
+	<div style="width:69%">
 		<div riot-tag="main-grid"></div>
 		<div riot-tag="inspector"></div>
 	</div>
 </div>
 
-<script type="riot/tag" src="{% static 'tag/coleccion_lista.tag' %}"></script>
-<script type="riot/tag" src="{% static 'tag/main_grid.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/coleccion-lista.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/main-grid.tag' %}"></script>
 <script type="riot/tag" src="{% static 'tag/inspector.tag' %}"></script>
-<script type="riot/tag" src="{% static 'tag/svg_seleccion.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/svg-list.tag' %}"></script>
 
 <script>
 	(function(){
@@ -47,13 +47,12 @@
 
 </script>
 <style type="text/css">
-* {
-	background-color: white;
-}
 .container {
 	width:90%;
 	margin:0 auto;
     margin-top: 59px;
+	display: flex;
+    flex-wrap: wrap;
 }
 .leftPanel {
 	float:left;
@@ -61,17 +60,13 @@
 }
 
 /* debug */
-.red {
-	border:1px solid red;
-}
-.blue {
-	border:1px solid blue;
-}
 .debug {
 	border:1px solid gray;
 }
-.black {
-	border:1px solid black;
+.links {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
 }
 </style>
 {% endblock %}

@@ -1,13 +1,11 @@
-<svg-seleccion>
-	<svg viewBox="0 0 300 300" id="panel">
-
-	</svg>
+<svg-list>
+	<svg viewBox="0 0 300 300" name="panel" />
 	<script>
 		var tag = this;
 		tag.items = [];
 
 		env.seleccion.on('render', function(object) {
-			tag.items = object.data;
+			tag.items = object.itemsArray;
 			tag.limpiarSvg();
 			tag.dibujarSvg();
 			tag.update();
@@ -52,4 +50,4 @@
 			}
 		}
 	</script>
-</svg-seleccion>
+</svg-list>

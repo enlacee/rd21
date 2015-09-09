@@ -3,26 +3,32 @@
 */
 env.seleccion.items = [];
 
-env.seleccion.agregar = function(model) {
-	this.items.push(model);
-	env.seleccion.trigger('render', {data : this.items });
+env.seleccion.add = function(model) {
+	if (this.items.hasOwnProperty(model.key) == false) {
+		this.items[model.key] = model;
+	}
+	env.seleccion.trigger('render', this.getDataObjectItems());
 }
 
-env.seleccion.remover = function(indice) {
-	this.rs.splice(indice, 1);
-	env.seleccion.trigger('render', {data : this.items });
+env.seleccion.del = function(indice) {
+	delete this.items[indice];
+	env.seleccion.trigger('render', this.getDataObjectItems());
 }
 
 /**
-* Busca objeto por indice URL si lo encuentra lo devuelve
-* @return object|boolean
+* convertir items 'HashTable' a array
+* @return object
 */
-env.seleccion.buscarItem = function(href) {
-	var array = this.items;
-	for (var i = 0; i < array.length; i++) {
-		if (array[i].href == href) {
-			return {indice: i, data: array[i]}
+env.seleccion.getDataObjectItems = function() {
+	var objs = this.items;
+	var result = { length: 0, items: objs, itemsArray: [] };
+
+	for (var p in objs) {
+		if (objs.hasOwnProperty(p)) {
+			result.itemsArray.push(objs[p]);
+			result.length++;
 		}
 	}
-	return false;
+
+	return result;
 }

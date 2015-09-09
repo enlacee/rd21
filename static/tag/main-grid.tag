@@ -1,9 +1,5 @@
 <main-grid>
 	<style scoped>
-		.grid-row {
-			display: flex;
-			flex-flow: row wrap;
-		}
 		#grid_container {
 			display: flex;
 			flex-flow: row wrap;
@@ -55,13 +51,13 @@
 	</style>
 
 	<div id="grid_container">
-		<div class="item" each={ items } onclick="{ abrirInspector }">
+		<div class="item" each={ items } onclick="{ elegirItemActual }">
 			<div class="innerframe">
 				<img class="thumbnail" src="{ this.blobs.thumbnail }" />
 			</div>
 			<span class="item-title">{ this.name }</span>
 			<input type="checkbox" name="itemCheck" class="btnCheckbox"
-				onclick="{ seleccionarItem }">
+				onclick="{ seleccionarItems }">
 		</div>
 	</div>
 
@@ -76,22 +72,18 @@
 			}
 		});
 
-		abrirInspector(event) {
+		elegirItemActual(event) {
 			event.stopPropagation();
 			env.cur_item.load(event.item.href);
 		}
 
-		// renderizar items seleccionados en SVG
-		seleccionarItem(event) {
+		// mostrados items en SVG
+		seleccionarItems(event) {
 			event.stopPropagation();
-			var rsObjeto = env.seleccion.buscarItem(event.item.href);
-
 			if (event.target.checked == true) {
-				if (rsObjeto == false) {
-					env.seleccion.agregar(event.item);
-				}
+				env.seleccion.add(event.item);
 			} else {
-				env.seleccion.remover(rsObjeto.indice);
+				env.seleccion.del(event.item.key);
 			}
 		}
 	</script>

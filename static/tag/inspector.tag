@@ -10,11 +10,12 @@
 			background-color: black;
 			opacity: 0.2;
 		}
-		#inspector {
+		.inspector {
 			width: 50%;
 			overflow: auto;
 			right: 1%;
 			display: none;
+			background-color: white;
 		}
 		.rightdrawer {
 			position: fixed;
@@ -23,25 +24,25 @@
 			z-index: 600;
 			padding: 1%;
 		}
-		.closebutton-inspector {
+		.close {
 			float:right;
 		}
 	</style>
 	<div name="shadow" class="shadow" style="display:none" onclick={ cerrar }>
 	</div>
-	<div name="inspector" id="inspector" class="rightdrawer position">
-		<span onclick={ cerrar } class="closebutton-inspector">
-			<a href="#">cerrar</a>
+	<div name="inspector" class="rightdrawer inspector">
+		<span onclick={ cerrar } class="close">
+			<span class="links">cerrar</span>
 		</span>
 		{ data.name }
 		<hr>
-		<div style="width:40%" class="blue">
+		<div style="width:40%">
 			<a href="{ data.blobs.preview }" target="_blank">
 				<img src="{ data.blobs.preview }" width=100% alt="{ data.name }" />
 			</a>
 		</div>
 
-		<div style="width:50%" class="blue">
+		<div style="width:50%">
 			metadata : message
 		</div>
 	</div>
