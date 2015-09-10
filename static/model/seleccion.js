@@ -1,34 +1,37 @@
 /**
 * ## seleccion
 */
-env.seleccion.items = [];
+var seleccion = (function() {
+	var items = {};
 
-env.seleccion.add = function(model) {
-	if (this.items.hasOwnProperty(model.key) == false) {
-		this.items[model.key] = model;
-	}
-	env.seleccion.trigger('render', this.getDataObjectItems());
-}
-
-env.seleccion.del = function(indice) {
-	delete this.items[indice];
-	env.seleccion.trigger('render', this.getDataObjectItems());
-}
-
-/**
-* convertir items 'HashTable' a array
-* @return object
-*/
-env.seleccion.getDataObjectItems = function() {
-	var objs = this.items;
-	var result = { length: 0, items: objs, itemsArray: [] };
-
-	for (var p in objs) {
-		if (objs.hasOwnProperty(p)) {
-			result.itemsArray.push(objs[p]);
-			result.length++;
-		}
+	var Seleccion = function() {
+		riot.observable(this);
 	}
 
-	return result;
-}
+	var P = Seleccion.prototype;
+
+	P.add = function(key, value) {
+		items[key] = value;
+		this.trigger('updated');
+	}
+
+	P.del = function(key) {
+		delete items[key];
+		this.trigger('updated');
+	}
+
+	P.keys = function() {
+		return Object.keys(items)
+	}
+
+	P.size = function() {
+		return this.keys().length;
+	}
+
+	P.getItems = function() {
+		return items;
+	}
+
+	// return
+	env.add('seleccion', new Seleccion());
+})();

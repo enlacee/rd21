@@ -1,7 +1,9 @@
 <main-grid>
 	<style scoped>
 		#grid_container {
+			display: -webkit-flex;
 			display: flex;
+			-webkit-flex-flow: row wrap;
 			flex-flow: row wrap;
 		}
 		.item {
@@ -81,7 +83,7 @@
 		seleccionarItems(event) {
 			event.stopPropagation();
 			if (event.target.checked == true) {
-				env.seleccion.add(event.item);
+				env.seleccion.add(event.item.key, event.item);
 			} else {
 				env.seleccion.del(event.item.key);
 			}

@@ -4,8 +4,8 @@
 		var tag = this;
 		tag.items = [];
 
-		env.seleccion.on('render', function(object) {
-			tag.items = object.itemsArray;
+		env.seleccion.on('updated', function() {
+			tag.items = env.seleccion.getItems();
 			tag.limpiarSvg();
 			tag.dibujarSvg();
 			tag.update();
@@ -27,10 +27,12 @@
 
 		dibujarSvg() {
 			var dataItems = tag.items;
-			var n = dataItems.length;
+			var n = Object.keys(dataItems).length;
 			if (n > 0) {
+				var i = 0;
 				var sz = Math.max(24*(10-n), 120);
-				dataItems.forEach(function(entry, i) {
+				for (var k in dataItems) {
+					var entry = dataItems[k];
 					var image = entry.blobs.preview;
 					var svgimg = document.createElementNS('http://www.w3.org/2000/svg', 'image');
 					svgimg.setAttributeNS(null, 'height', sz);
@@ -46,7 +48,8 @@
 						+ 'translate('+ (-10-sz*0.5) +','+ (-(sz+120)/2) +')';
 					svgimg.setAttributeNS(null, 'transform', attrTransform);
 					tag.panel.appendChild(svgimg);
-				});
+					i = i + 1;
+				}
 			}
 		}
 	</script>

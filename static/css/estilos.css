@@ -6,7 +6,12 @@
 	margin:0 auto;
     margin-top: 59px;
 	display: flex;
-    flex-wrap: wrap;
+    flex-wrap: row;
+}
+.content-left {
+	display: flex;
+	flex-direction: column;
+	min-width: 250px
 }
 .links {
 	color: blue;
