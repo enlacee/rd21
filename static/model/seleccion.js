@@ -31,6 +31,15 @@ var seleccion = (function() {
 	P.getItems = function() {
 		return items;
 	}
+/*
+	P.each = function(function(this){ return true}, items) {
+		console.log('myFunction', myFunction);
+		console.log('items', items);
+	}*/
+
+	P.each2 = function(f){
+		console.log('f',f)
+	}
 
 	// return
 	env.add('seleccion', new Seleccion());

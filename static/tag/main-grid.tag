@@ -52,8 +52,8 @@
 		}
 	</style>
 
-	<div id="grid_container">
-		<div class="item" each={ items } onclick="{ elegirItemActual }">
+	<div id="grid_container" tabindex="1">
+		<div class="item" each={ items } onclick="{ elegirItemActual }" onkeypress="{ edit }">
 			<div class="innerframe">
 				<img class="thumbnail" src="{ this.blobs.thumbnail }" />
 			</div>
@@ -71,6 +71,7 @@
 			if (status == 'success') {
 				me.items = env.cur_coleccion.items;
 				me.update();
+				//document.getElementById("grid_container").focus();
 			}
 		});
 
@@ -88,5 +89,24 @@
 				env.seleccion.del(event.item.key);
 			}
 		}
+
+		edit(event) {
+			console.log('event', event)
+			 console.log(e.target.value)
+		}
+
+		// jquery
+
+		/*this.on('mount', function(){
+	      // Contexted jQuery
+	      $('p', this.root)
+
+	      // Contexted Query Selector
+	      this.root.querySelectorAll('p')
+		  var a = $('div', $('p', this.root))
+	  })*/
+
+
+
 	</script>
 </main-grid>

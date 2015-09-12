@@ -5,7 +5,10 @@
 		tag.items = [];
 
 		env.seleccion.on('updated', function() {
-			tag.items = env.seleccion.getItems();
+			//tag.items = env.seleccion.getItems();
+			env.seleccion.each2(tag.dibujarSvg2);
+			//env.seleccion.each(tag.dibujarSvg2());
+
 			tag.limpiarSvg();
 			tag.dibujarSvg();
 			tag.update();
@@ -23,6 +26,11 @@
 			+'	</feMerge>'
 			+'  </filter>';
 			list.innerHTML  = shadow;
+		}
+
+		dibujarSvg2() {
+			console.log('dibujarSvg2');
+			console.log('this', this)
 		}
 
 		dibujarSvg() {

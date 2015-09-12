@@ -6,12 +6,15 @@
 	margin:0 auto;
     margin-top: 59px;
 	display: flex;
-    flex-wrap: row;
 }
 .content-left {
 	display: flex;
 	flex-direction: column;
 	min-width: 250px
+}
+.content-right {
+	display: block;
+	width: 100%;
 }
 .links {
 	color: blue;
