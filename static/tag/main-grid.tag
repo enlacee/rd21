@@ -52,14 +52,13 @@
 		}
 	</style>
 
-	<div id="grid_container" tabindex="1">
-		<div class="item" each={ items } onclick="{ elegirItemActual }" onkeypress="{ edit }">
+	<div id="grid_container">
+		<div class="item" each={ items } data-href="{ this.href }">
 			<div class="innerframe">
 				<img class="thumbnail" src="{ this.blobs.thumbnail }" />
 			</div>
 			<span class="item-title">{ this.name }</span>
-			<input type="checkbox" name="itemCheck" class="btnCheckbox"
-				onclick="{ seleccionarItems }">
+			<input type="checkbox" name="itemCheck" class="btnCheckbox" onclick="{ seleccionarItems }">
 		</div>
 	</div>
 
@@ -71,13 +70,14 @@
 			if (status == 'success') {
 				me.items = env.cur_coleccion.items;
 				me.update();
-				//document.getElementById("grid_container").focus();
 			}
 		});
 
+		// Abrir inspector
 		elegirItemActual(event) {
 			event.stopPropagation();
-			env.cur_item.load(event.item.href);
+			var href =  event.currentTarget.getAttribute('data-href');
+			env.cur_item.load(href);
 		}
 
 		// mostrados items en SVG
@@ -90,23 +90,17 @@
 			}
 		}
 
-		edit(event) {
-			console.log('event', event)
-			 console.log(e.target.value)
-		}
-
-		// jquery
-
-		/*this.on('mount', function(){
-	      // Contexted jQuery
-	      $('p', this.root)
-
-	      // Contexted Query Selector
-	      this.root.querySelectorAll('p')
-		  var a = $('div', $('p', this.root))
-	  })*/
-
-
-
+		// Montar TAG
+		this.on('mount', function() {
+			var $grid_container = $('#grid_container', this.root);
+			$grid_container
+				.on ('click', '.item', function (e) {
+					if (e.metaKey || e.ctrlKey) {
+						$('input', e.currentTarget).click();
+					} else {
+						me.elegirItemActual(e);
+					}
+				});
+	    })
 	</script>
 </main-grid>

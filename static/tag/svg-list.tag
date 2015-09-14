@@ -26,7 +26,7 @@
 
 		dibujarSvg(items) {
 			var dataItems = items;
-			var n = Object.keys(items).length;
+			var n = Object.keys(dataItems).length;
 			if (n > 0) {
 				var i = 0;
 				var sz = Math.max(24*(10-n), 120);
