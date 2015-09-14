@@ -5,12 +5,8 @@
 		tag.items = [];
 
 		env.seleccion.on('updated', function() {
-			//tag.items = env.seleccion.getItems();
-			env.seleccion.each2(tag.dibujarSvg2);
-			//env.seleccion.each(tag.dibujarSvg2());
-
 			tag.limpiarSvg();
-			tag.dibujarSvg();
+			env.seleccion.each(tag.dibujarSvg);
 			tag.update();
 		});
 
@@ -28,14 +24,9 @@
 			list.innerHTML  = shadow;
 		}
 
-		dibujarSvg2() {
-			console.log('dibujarSvg2');
-			console.log('this', this)
-		}
-
-		dibujarSvg() {
-			var dataItems = tag.items;
-			var n = Object.keys(dataItems).length;
+		dibujarSvg(items) {
+			var dataItems = items;
+			var n = Object.keys(items).length;
 			if (n > 0) {
 				var i = 0;
 				var sz = Math.max(24*(10-n), 120);
