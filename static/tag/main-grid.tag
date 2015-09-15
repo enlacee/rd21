@@ -53,7 +53,7 @@
 	</style>
 
 	<div id="grid_container">
-		<div class="item" each={ items } data-href="{ this.href }">
+		<div class="item" each={ items } data-href="{ this.href }" >
 			<div class="innerframe">
 				<img class="thumbnail" src="{ this.blobs.thumbnail }" />
 			</div>
@@ -83,14 +83,14 @@
 		// mostrados items en SVG
 		seleccionarItems(event) {
 			event.stopPropagation();
-			if (event.target.checked == true) {
+			if (event.currentTarget.checked == true) {
 				env.seleccion.add(event.item.key, event.item);
 			} else {
 				env.seleccion.del(event.item.key);
 			}
 		}
 
-		// Montar TAG
+		// after tag mounted
 		this.on('mount', function() {
 			var $grid_container = $('#grid_container', this.root);
 			$grid_container
@@ -101,6 +101,6 @@
 						me.elegirItemActual(e);
 					}
 				});
-	    })
+		})
 	</script>
 </main-grid>

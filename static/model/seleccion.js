@@ -32,8 +32,12 @@ var seleccion = (function() {
 		return items;
 	}
 
-	P.each = function(interar) {
-		interar(items);
+	P.each = function(iterador) {
+		var indice = 0;
+		for (var k in items) {
+			iterador(indice, items[k], items);
+			indice = indice + 1;
+		}
 	}
 
 	// return
