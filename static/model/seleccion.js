@@ -24,7 +24,7 @@ var seleccion = (function() {
 		return Object.keys(items)
 	}
 
-	P.size = function() {
+	P.length = function() {
 		return this.keys().length;
 	}
 
@@ -35,8 +35,8 @@ var seleccion = (function() {
 	P.each = function(iterador) {
 		var indice = 0;
 		for (var k in items) {
-			iterador(indice, items[k], items);
-			indice = indice + 1;
+			iterador(indice, items[k]);
+			indice++;
 		}
 	}
 

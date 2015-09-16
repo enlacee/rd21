@@ -53,7 +53,7 @@
 	</style>
 
 	<div id="grid_container">
-		<div class="item" each={ items } data-href="{ this.href }" >
+		<div class="item" each={ items } onclick="{ elegirItemActual }" >
 			<div class="innerframe">
 				<img class="thumbnail" src="{ this.blobs.thumbnail }" />
 			</div>
@@ -76,8 +76,17 @@
 		// Abrir inspector
 		elegirItemActual(event) {
 			event.stopPropagation();
-			var href =  event.currentTarget.getAttribute('data-href');
-			env.cur_item.load(href);
+			if (event.ctrlKey || event.metaKey) {
+				var checkbox = event.currentTarget.children.itemCheck;
+				checkbox.checked = !checkbox.checked;
+				if (checkbox.checked) {
+					env.seleccion.add(event.item.key, event.item);
+				} else {
+					env.seleccion.del(event.item.key);
+				}
+			} else {
+				env.cur_item.load(event.item.href);
+			}
 		}
 
 		// mostrados items en SVG
@@ -89,18 +98,5 @@
 				env.seleccion.del(event.item.key);
 			}
 		}
-
-		// after tag mounted
-		this.on('mount', function() {
-			var $grid_container = $('#grid_container', this.root);
-			$grid_container
-				.on ('click', '.item', function (e) {
-					if (e.metaKey || e.ctrlKey) {
-						$('input', e.currentTarget).click();
-					} else {
-						me.elegirItemActual(e);
-					}
-				});
-		})
 	</script>
 </main-grid>

@@ -6,7 +6,7 @@
 
 		env.seleccion.on('updated', function() {
 			tag.limpiarSvg();
-			env.seleccion.each(tag.dibujarSvg);
+			tag.dibujarSvg();
 			tag.update();
 		});
 
@@ -24,27 +24,27 @@
 			list.innerHTML  = shadow;
 		}
 
-		dibujarSvg(index, element, items) {
-			var n = Object.keys(items).length;// tamaño actual de items
+		dibujarSvg() {
+			var n = env.seleccion.length();
 			var sz = Math.max(24*(10-n), 120);
-			var i = index;
 
-			var entry = element;
-			var image = entry.blobs.preview;
-			var svgimg = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-			svgimg.setAttributeNS(null, 'height', sz);
-			svgimg.setAttributeNS(null, 'width', sz);
-			svgimg.setAttributeNS('http://www.w3.org/1999/xlink', 'href', image);
-			svgimg.setAttributeNS(null, 'x', '0');
-			svgimg.setAttributeNS(null, 'y', '0');
-			svgimg.setAttributeNS(null, 'visibility', 'visible');
-			svgimg.setAttributeNS(null, 'filter', 'url(#dropShadow)');
+			env.seleccion.each(function (i, entry) {
+				var image = entry.blobs.preview;
+				var svgimg = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+				svgimg.setAttributeNS(null, 'height', sz);
+				svgimg.setAttributeNS(null, 'width', sz);
+				svgimg.setAttributeNS('http://www.w3.org/1999/xlink', 'href', image);
+				svgimg.setAttributeNS(null, 'x', '0');
+				svgimg.setAttributeNS(null, 'y', '0');
+				svgimg.setAttributeNS(null, 'visibility', 'visible');
+				svgimg.setAttributeNS(null, 'filter', 'url(#dropShadow)');
 
-			var attrTransform = 'translate('+ (60 + (i+0.5)*180/n) +',220) '
-				+ 'rotate('+ ((i+0.5)*60/n -30) +') '
-				+ 'translate('+ (-10-sz*0.5) +','+ (-(sz+120)/2) +')';
-			svgimg.setAttributeNS(null, 'transform', attrTransform);
-			tag.panel.appendChild(svgimg);
+				var attrTransform = 'translate('+ (60 + (i+0.5)*180/n) +',220) '
+					+ 'rotate('+ ((i+0.5)*60/n -30) +') '
+					+ 'translate('+ (-10-sz*0.5) +','+ (-(sz+120)/2) +')';
+				svgimg.setAttributeNS(null, 'transform', attrTransform);
+				tag.panel.appendChild(svgimg);
+			});
 		}
 	</script>
 </svg-list>
