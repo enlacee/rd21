@@ -44,6 +44,7 @@
 			env.cur_coleccion.load(href)
 				.then(function() {
 					env.coleccion_lista.update()
+					env.cur_coleccion.trigger('actualizarTagHeader');
 			});
 		}
 	</script>

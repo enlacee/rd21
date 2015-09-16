@@ -32,6 +32,11 @@ var seleccion = (function() {
 		return items;
 	}
 
+	P.clear = function() {
+		items = {};
+		this.trigger('updated');
+	};
+
 	P.each = function(iterador) {
 		var indice = 0;
 		for (var k in items) {

@@ -98,5 +98,7 @@
 				env.seleccion.del(event.item.key);
 			}
 		}
+
+
 	</script>
 </main-grid>
