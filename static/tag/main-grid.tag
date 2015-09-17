@@ -58,47 +58,65 @@
 				<img class="thumbnail" src="{ this.blobs.thumbnail }" />
 			</div>
 			<span class="item-title">{ this.name }</span>
-			<input type="checkbox" name="itemCheck" class="btnCheckbox" onclick="{ seleccionarItems }">
+			<input type="checkbox" name="itemCheck" checked="{ env.seleccion.isselected(this.key) }" class="btnCheckbox"
+				onclick="{ parent.stopClick }" onchange="{ seleccionarItems }">
+				{ console.log('evaluar isselected al cargar ', env.seleccion.isselected(this.key)) }
 		</div>
 	</div>
 
 	<script>
 		var me = this;
 		me.items = [];
+		me.done = true;
 
 		env.cur_coleccion.on('updated', function(status) {
 			if (status == 'success') {
 				me.items = env.cur_coleccion.items;
 				me.update();
+				console.log("UPDATE TAG main-grid")
 			}
 		});
 
 		// Abrir inspector
 		elegirItemActual(event) {
-			event.stopPropagation();
 			if (event.ctrlKey || event.metaKey) {
-				var checkbox = event.currentTarget.children.itemCheck;
-				checkbox.checked = !checkbox.checked;
-				if (checkbox.checked) {
-					env.seleccion.add(event.item.key, event.item);
-				} else {
-					env.seleccion.del(event.item.key);
-				}
+				event.item.itemCheck.click();
+				//var checkbox = event.currentTarget.children.itemCheck;
+				//checkbox.checked = !checkbox.checked;
+				//me.seleccionarCheckbox(checkbox.checked, event.item);
 			} else {
 				env.cur_item.load(event.item.href);
 			}
 		}
 
 		// mostrados items en SVG
+		// onchange
 		seleccionarItems(event) {
 			event.stopPropagation();
-			if (event.currentTarget.checked == true) {
-				env.seleccion.add(event.item.key, event.item);
+			var checkbox = event.currentTarget;
+			//console.log('checkbox.checked',checkbox.checked)
+			me.seleccionarCheckbox(checkbox.checked, event.item);
+		}
+
+		/*
+		// onclick
+		seleccionarItems(event) {
+			event.stopPropagation();
+			var checkbox = event.currentTarget;
+			me.seleccionarCheckbox(checkbox.checked, event.item);
+		}*/
+
+		seleccionarCheckbox(status, item) {
+			console.log('status checkbox', status)
+			if (status == true) {
+				env.seleccion.add(item.key, item);
 			} else {
-				env.seleccion.del(event.item.key);
+				env.seleccion.del(item.key);
 			}
 		}
 
-
+		stopClick(e) {
+			e.stopPropagation();
+		}
 	</script>
 </main-grid>
