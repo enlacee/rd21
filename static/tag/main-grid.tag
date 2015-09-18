@@ -51,16 +51,17 @@
 			left: 57px;
 		}
 	</style>
-
+	{ console.log('dentro TAG') }
 	<div id="grid_container">
 		<div class="item" each={ items } onclick="{ elegirItemActual }" >
+			{ console.log('inicio each CLICK EACH') }
 			<div class="innerframe">
 				<img class="thumbnail" src="{ this.blobs.thumbnail }" />
 			</div>
 			<span class="item-title">{ this.name }</span>
 			<input type="checkbox" name="itemCheck" checked="{ env.seleccion.isselected(this.key) }" class="btnCheckbox"
 				onclick="{ parent.stopClick }" onchange="{ seleccionarItems }">
-				{ console.log('evaluar isselected al cargar ', env.seleccion.isselected(this.key)) }
+				{ console.log('fin each CLICK EACH') }
 		</div>
 	</div>
 
@@ -68,30 +69,27 @@
 		var me = this;
 		me.items = [];
 		me.done = true;
-
+		console.log("main-grid : TAG:load ")
 		env.cur_coleccion.on('updated', function(status) {
 			if (status == 'success') {
 				me.items = env.cur_coleccion.items;
 				me.update();
-				console.log("UPDATE TAG main-grid")
+				console.log("main-grid : on : updated")
 			}
 		});
 
 		// Abrir inspector
 		elegirItemActual(event) {
 			if (event.ctrlKey || event.metaKey) {
-				event.item.itemCheck.click();
-				//var checkbox = event.currentTarget.children.itemCheck;
-				//checkbox.checked = !checkbox.checked;
-				//me.seleccionarCheckbox(checkbox.checked, event.item);
+				event.currentTarget.children.itemCheck.click();
 			} else {
 				env.cur_item.load(event.item.href);
 			}
 		}
 
 		// mostrados items en SVG
-		// onchange
 		seleccionarItems(event) {
+			console.log("ONCHANGE checkbox")
 			event.stopPropagation();
 			var checkbox = event.currentTarget;
 			//console.log('checkbox.checked',checkbox.checked)

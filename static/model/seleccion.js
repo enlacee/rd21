@@ -46,13 +46,11 @@ var seleccion = (function() {
 	}
 
 	P.isselected = function(key) {
-		//console.log('== fn.P.isselected');
-		console.log('typeof(items[key])', typeof(items[key]));
-		//console.log('==fn.P.isselected');
-
 		if ( typeof(items[key]) == 'object') {
+			console.log(key, true);
 			return true;
 		} else {
+			console.log(key, false);
 			return false;
 		}
 	}
