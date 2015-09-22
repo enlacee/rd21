@@ -4,18 +4,17 @@
 {% block extra_head %}
 		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
 		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'/>
-		<link href="{% static 'css/estilos.css' %}" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="{% static 'js/jquery-1.10.1.min.js' %}"></script>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.min.css' %}" media="screen"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.w2.css' %}" media="screen"/>
 		<script type="text/javascript" src="{% static 'js/riot+compiler.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/env.js' %}"></script>
 		<script type="text/javascript" src="{% static 'js/model.js' %}"></script>
 {% endblock %}
 {% block content %}
-
 <div class="container">
 	<div class="content-left">
-		<coleccion-lista></coleccion-lista>
+		<collections-list></collections-list>
 		<svg-list></svg-list>
 	</div>
 	<div class="content-right">
@@ -24,22 +23,20 @@
 		<inspector></inspector>
 	</div>
 </div>
-
-<script type="riot/tag" src="{% static 'tag/coleccion-lista.tag' %}"></script>
-<script type="riot/tag" src="{% static 'tag/main-grid-header.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/collection-item.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/collections-list.tag' %}"></script>
 <script type="riot/tag" src="{% static 'tag/main-grid.tag' %}"></script>
 <script type="riot/tag" src="{% static 'tag/inspector.tag' %}"></script>
 <script type="riot/tag" src="{% static 'tag/svg-list.tag' %}"></script>
+<script type="riot/tag" src="{% static 'tag/main-grid-header.tag' %}"></script>
 
 <script type="text/javascript" src="{% static 'model/seleccion.js' %}"></script>
 <script>
 	(function(){
-	env.add('colecciones', new AjaxModel('{% url "user_collections" %}'))
-		.add('cur_coleccion', new AjaxModel())
+	env.add('collections', new AjaxModel('{% url "user_collections" %}'))
+		.add('cur_collection', new AjaxModel())
 		.add('cur_item', new AjaxModel())
 	riot.mount('*');
-
-	env.colecciones.load();
 	})();
 </script>
 {% endblock %}

@@ -14,7 +14,7 @@
 			text-align: center;
 			font-size: 8pt;
 			border:1px solid gray;
-			margin:2px
+			margin:2px;
 		}
 		.item img {
 			max-width: 120px;
@@ -51,61 +51,45 @@
 			left: 57px;
 		}
 	</style>
-	{ console.log('dentro TAG') }
+	{console.log('TAG')}
 	<div id="grid_container">
-		<div class="item" each={ items } onclick="{ elegirItemActual }" >
-			{ console.log('inicio each CLICK EACH') }
-			<div class="innerframe">
-				<img class="thumbnail" src="{ this.blobs.thumbnail }" />
-			</div>
-			<span class="item-title">{ this.name }</span>
-			<input type="checkbox" name="itemCheck" checked="{ env.seleccion.isselected(this.key) }" class="btnCheckbox"
-				onclick="{ parent.stopClick }" onchange="{ seleccionarItems }">
-				{ console.log('fin each CLICK EACH') }
+		<div class="item" each={items} onclick="{parent.elegirItemActual}">
+			<div class="innerframe"><img src="{this.blobs.thumbnail}"/></div>
+			<span class="item-title">{this.name}</span>
+			<input type="checkbox" name="itemCheck" class="btnCheckbox"
+				onclick="{parent.stopClick}" onchange="{parent.seleccionarItems}"
+				checked="{env.seleccion.isselected(this.key)}"/>
 		</div>
 	</div>
-
+	{console.log('TAG FIN')}
 	<script>
 		var me = this;
 		me.items = [];
-		me.done = true;
-		console.log("main-grid : TAG:load ")
-		env.cur_coleccion.on('updated', function(status) {
+
+		env.cur_collection.on('updated', function(status) {
 			if (status == 'success') {
-				me.items = env.cur_coleccion.items;
+				me.items = this.items;
 				me.update();
-				console.log("main-grid : on : updated")
 			}
 		});
 
-		// Abrir inspector
-		elegirItemActual(event) {
-			if (event.ctrlKey || event.metaKey) {
-				event.currentTarget.children.itemCheck.click();
+		elegirItemActual(e) {
+			alert("popup")
+			if (e.ctrlKey || e.metaKey) {
+				e.currentTarget.children.itemCheck.click();
 			} else {
-				env.cur_item.load(event.item.href);
+				env.cur_item.load(e.item.href);
 			}
 		}
 
-		// mostrados items en SVG
-		seleccionarItems(event) {
-			console.log("ONCHANGE checkbox")
-			event.stopPropagation();
-			var checkbox = event.currentTarget;
-			//console.log('checkbox.checked',checkbox.checked)
-			me.seleccionarCheckbox(checkbox.checked, event.item);
+		seleccionarItems(e) {
+			e.stopPropagation();
+			console.break();
+			console.log('e.currentTarget.checked', e.currentTarget.checked);
+			me.seleccionarCheckbox(e.currentTarget.checked, e.item);
 		}
 
-		/*
-		// onclick
-		seleccionarItems(event) {
-			event.stopPropagation();
-			var checkbox = event.currentTarget;
-			me.seleccionarCheckbox(checkbox.checked, event.item);
-		}*/
-
 		seleccionarCheckbox(status, item) {
-			console.log('status checkbox', status)
 			if (status == true) {
 				env.seleccion.add(item.key, item);
 			} else {
@@ -115,6 +99,7 @@
 
 		stopClick(e) {
 			e.stopPropagation();
+			alert("stopClick");
 		}
 	</script>
 </main-grid>

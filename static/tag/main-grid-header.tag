@@ -1,52 +1,50 @@
 <main-grid-header>
 	<style scoped>
-		#content {
+		.content {
 			display: flex;
-			flex-wrap: wrap;
+			flex-wrap;
 			padding:5px 0px;
 		}
 		.item-right {
 			display: flex;
-		    flex-wrap: wrap;
-		    margin-left: auto;
+			flex-wrap:wrap;
+			margin-left: auto;
 		}
 		.item-right span {
 			margin:0 5px;
 		}
 	</style>
-
-	<div id="content" style="border:1px solid red">
+	<div class="content">
 		<div>
-			<span>home</span> <span>/</span>
+			<span>home</span><span>/</span>
 		</div>
 		<div class="item-right">
-			<span class="links" onclick="{ seleccionarItems }">seleccionar({ numeroDeitems } items)</span>
-			<span class="links" onclick="{ deseleccionarItems }">desseleccionar</span>
+			<span class="links" onclick="{seleccionarItems}">seleccionar({numeroDeItems} items)</span>
+			<span class="links" onclick="{deseleccionarItems}">desseleccionar</span>
 			<span class="links">download</span>
 			<span>0</span>
 		</div>
 	</div>
-
 	<script>
 		var me = this;
-		me.numeroDeitems = 0;
+		me.numeroDeItems = 0;
 
-		// Actualizar contador
-		env.cur_coleccion.on('actualizarTagHeader', function() {
-			me.numeroDeitems = env.cur_coleccion.items.length;
+		env.cur_collection.on('updated', function() {
+			me.numeroDeItems = this.items.length;
 			me.update();
 		});
 
-		seleccionarItems(event) {
-			var items = env.cur_coleccion.items;
-			items.forEach(function(entry) {
-				env.seleccion.add(entry.key, entry);
-			});
+		seleccionarItems(e) {
+			var items = env.cur_collection.items;
+			if (typeof(items) != 'undefined' && items.length > 0) {
+				items.forEach(function(entry) {
+					env.seleccion.add(entry.key, entry);
+				});
+			}
 		}
 
-		deseleccionarItems(event) {
+		deseleccionarItems(e) {
 			env.seleccion.clear();
 		}
-
 	</script>
 </main-grid-header>

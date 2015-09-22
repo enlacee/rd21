@@ -28,21 +28,19 @@
 			float:right;
 		}
 	</style>
-	<div name="shadow" class="shadow" style="display:none" onclick={ cerrar }>
-	</div>
+	<div name="shadow" class="shadow" style="display:none" onclick="{cerrar}"></div>
 	<div name="inspector" class="rightdrawer inspector">
-		<span onclick={ cerrar } class="close">
+		<span onclick="{cerrar}" class="close">
 			<span class="links">cerrar</span>
 		</span>
-		{ data.name }
+		{data.name}
 		<hr>
-		<div style="width:40%">
-			<a href="{ data.blobs.preview }" target="_blank">
-				<img src="{ data.blobs.preview }" width=100% alt="{ data.name }" />
+		<div style="width: 40%">
+			<a href="{data.blobs.preview}" target="_blank">
+				<img src="{data.blobs.preview}" width="100%"/>
 			</a>
 		</div>
-
-		<div style="width:50%">
+		<div style="width: 50%">
 			metadata : message
 		</div>
 	</div>
@@ -53,12 +51,12 @@
 		env.cur_item.on('updated', function(status) {
 			if (status == 'success') {
 				me.abrir();
-				me.data = env.cur_item;
-				me.update();
+				me.data = this;
+				me.update()
 			}
 		});
 
-		cerrar(event) {
+		cerrar(e) {
 			me.shadow.style.display = 'none';
 			me.inspector.style.display = 'none';
 		}

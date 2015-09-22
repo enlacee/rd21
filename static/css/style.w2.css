@@ -1,16 +1,13 @@
-/*
-* style.css
-*/
 .container {
-	width:90%;
-	margin:0 auto;
+	width: 90%;
+	margin: 0 auto;
     margin-top: 59px;
 	display: flex;
 }
 .content-left {
 	display: flex;
 	flex-direction: column;
-	min-width: 250px
+	min-width: 250px;
 }
 .content-right {
 	display: block;
