@@ -83,10 +83,11 @@
 		}
 
 		seleccionarItems(e) {
+			console.log('onchange:seleccionarItems')
 			e.stopPropagation();
-			console.break();
-			console.log('e.currentTarget.checked', e.currentTarget.checked);
-			me.seleccionarCheckbox(e.currentTarget.checked, e.item);
+			/*console.log('e.currentTarget.checked', e.currentTarget.checked);
+			me.seleccionarCheckbox(e.currentTarget.checked, e.item);*/
+
 		}
 
 		seleccionarCheckbox(status, item) {
@@ -98,8 +99,10 @@
 		}
 
 		stopClick(e) {
+			console.log('onclick: stopClick')
 			e.stopPropagation();
 			alert("stopClick");
+			//console.break();
 		}
 	</script>
 </main-grid>
