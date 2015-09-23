@@ -51,7 +51,6 @@
 			left: 57px;
 		}
 	</style>
-	{console.log('TAG')}
 	<div id="grid_container">
 		<div class="item" each={items} onclick="{parent.elegirItemActual}">
 			<div class="innerframe"><img src="{this.blobs.thumbnail}"/></div>
@@ -61,7 +60,6 @@
 				checked="{env.seleccion.isselected(this.key)}"/>
 		</div>
 	</div>
-	{console.log('TAG FIN')}
 	<script>
 		var me = this;
 		me.items = [];
@@ -73,8 +71,11 @@
 			}
 		});
 
+		env.seleccion.on('updated', function(){
+			me.update();
+		});
+
 		elegirItemActual(e) {
-			alert("popup")
 			if (e.ctrlKey || e.metaKey) {
 				e.currentTarget.children.itemCheck.click();
 			} else {
@@ -83,11 +84,7 @@
 		}
 
 		seleccionarItems(e) {
-			console.log('onchange:seleccionarItems')
-			e.stopPropagation();
-			/*console.log('e.currentTarget.checked', e.currentTarget.checked);
-			me.seleccionarCheckbox(e.currentTarget.checked, e.item);*/
-
+			me.seleccionarCheckbox(e.currentTarget.checked, e.item);
 		}
 
 		seleccionarCheckbox(status, item) {
@@ -99,10 +96,8 @@
 		}
 
 		stopClick(e) {
-			console.log('onclick: stopClick')
 			e.stopPropagation();
-			alert("stopClick");
-			//console.break();
+			e.preventUpdate = true;
 		}
 	</script>
 </main-grid>

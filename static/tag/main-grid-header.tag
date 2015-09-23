@@ -44,7 +44,12 @@
 		}
 
 		deseleccionarItems(e) {
-			env.seleccion.clear();
+			var items = env.cur_collection.items;
+			if (typeof(items) != 'undefined' && items.length > 0) {
+				items.forEach(function(entry) {
+					env.seleccion.del(entry.key);
+				});
+			}
 		}
 	</script>
 </main-grid-header>

@@ -46,7 +46,6 @@ var seleccion = (function() {
 	}
 
 	P.isselected = function(key) {
-		console.log('typeof(items[key])', typeof(items[key]));
 		if (typeof(items[key]) == 'object') {
 			return true;
 		} else {
