@@ -12,24 +12,40 @@
 		}
 		.inspector {
 			width: 50%;
-			overflow: auto;
-			right: 1%;
-			display: none;
 			background-color: white;
+			overflow: auto;
 		}
-		.rightdrawer {
+		.box {
 			position: fixed;
-			right: 5%;
-			bottom: 5%;
-			z-index: 600;
+			top: 1%;
+			bottom: 1%;
+			right: -52%;
 			padding: 1%;
+			z-index: 600;
+			right: right: -52%;
 		}
+		.inspector-open {
+			-webkit-transition: all 3ms ease-in-out;
+			-moz-transition: all 3ms ease-in-out;
+			-ms-transition: all 3ms ease-in-out;
+			-o-transition: all 3ms ease-in-out;
+			transition:all 0.3s ease-in-out;
+			right: 1%;
+		}
+		.inspector-close {
+			-webkit-transition: all 3ms ease-in-out;
+			-moz-transition: all 3ms ease-in-out;
+			-ms-transition: all 3ms ease-in-out;
+			-o-transition: all 3ms ease-in-out;
+			transition:all 0.3s ease-in-out;
+		}
+
 		.close {
 			float:right;
 		}
 	</style>
 	<div name="shadow" class="shadow" style="display:none" onclick="{cerrar}"></div>
-	<div name="inspector" class="rightdrawer inspector">
+	<div name="inspector" class="box inspector {inspector-open: visible, inspector-close: !visible}">
 		<span onclick="{cerrar}" class="close">
 			<span class="links">cerrar</span>
 		</span>
@@ -47,6 +63,7 @@
 	<script>
 		var me = this;
 		me.data = [];
+		me.visible = false;
 
 		env.cur_item.on('updated', function(status) {
 			if (status == 'success') {
@@ -58,12 +75,12 @@
 
 		cerrar(e) {
 			me.shadow.style.display = 'none';
-			me.inspector.style.display = 'none';
+			me.visible = false;
 		}
 
 		abrir() {
 			me.shadow.style.display = 'block';
-			me.inspector.style.display = 'block';
+			me.visible = true;
 		}
 	</script>
 </inspector>

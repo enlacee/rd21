@@ -75,6 +75,7 @@
 			me.update();
 		});
 
+
 		elegirItemActual(e) {
 			if (e.ctrlKey || e.metaKey) {
 				e.currentTarget.children.itemCheck.click();

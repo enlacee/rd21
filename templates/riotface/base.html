@@ -1,0 +1,24 @@
+{% load static from staticfiles %}{% load account %}<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block head_title %}{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" media="screen"/>
+		{% block extra_head %}
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}
+		<div id="topbar">
+			<a href="{% url "main" %}">
+				<span style="float:left; margin:3px 16px;"><img src="{% static 'img/logo.svg' %}" height="50"/></span>
+			</a>
+			<span id="useravatar">{% user_display request.user %} <a href="{% url 'account_logout' %}?next=/web/">Sign Out</a></span>
+			{% block baritems %}{%endblock %}
+		</div>
+		{% block content %}
+		{% endblock %}
+		{% endblock %}
+		{% block extra_body %}
+		{% endblock %}
+	</body>
+</html>

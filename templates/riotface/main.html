@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'riotface/base.html' %}
 {% load static from staticfiles %}
 {% block head_title %}Mira{% endblock %}
 {% block extra_head %}
@@ -16,7 +16,6 @@
 	<div class="content-left">
 		<collections-list></collections-list>
 		<svg-list></svg-list>
-		<selection-properties></selection-properties>
 	</div>
 	<div class="content-right">
 		<main-grid-header></main-grid-header>
@@ -32,7 +31,6 @@
 <script type="riot/tag" src="{% static 'tag/main-grid-header.tag' %}"></script>
 
 <script type="text/javascript" src="{% static 'model/seleccion.js' %}"></script>
-<script type="riot/tag" src="{% static 'tag/selection-properties.tag' %}"></script>
 <script>
 	(function(){
 	env.add('collections', new AjaxModel('{% url "user_collections" %}'))
