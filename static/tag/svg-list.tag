@@ -11,17 +11,30 @@
 		});
 
 		limpiarSvg() {
-			var list = tag.panel;
-			var shadow = ''
-			+'<filter id="dropShadow">'
-			+'	<feGaussianBlur in="SourceAlpha" stdDeviation="3" />'
-			+'	<feOffset dx="2" dy="4" />'
-			+'	<feMerge>'
-			+'		<feMergeNode />'
-			+'		<feMergeNode in="SourceGraphic" />'
-			+'	</feMerge>'
-			+'  </filter>';
-			list.innerHTML  = shadow;
+			tag.panel.innerHTML = '';
+			var filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+			filter.setAttributeNS(null, 'id', 'dropShadow');
+
+			var gaussianFilter = document.createElementNS("http://www.w3.org/2000/svg", "feGaussianBlur");
+			gaussianFilter.setAttribute("in","SourceAlpha");
+			gaussianFilter.setAttribute("stdDeviation","3");
+			filter.appendChild(gaussianFilter);
+
+			var feOffset = document.createElementNS("http://www.w3.org/2000/svg", "feOffset");
+			feOffset.setAttribute("dx","2");
+			feOffset.setAttribute("dy","4");
+			filter.appendChild(feOffset);
+
+			var feMerge = document.createElementNS("http://www.w3.org/2000/svg", "feMerge");
+			var feMergeNode = document.createElementNS("http://www.w3.org/2000/svg", "feMergeNode");
+			var feMergeNode_in = document.createElementNS("http://www.w3.org/2000/svg", "feMergeNode");
+			feMergeNode_in.setAttribute('in', 'SourceGraphic');
+
+			filter.appendChild(feMerge);
+			feMerge.appendChild(feMergeNode);
+			feMerge.appendChild(feMergeNode_in);
+
+			tag.panel.appendChild(filter);
 		}
 
 		dibujarSvg() {
@@ -29,7 +42,9 @@
 			var sz = Math.max(24*(10-n), 120);
 
 			env.seleccion.each(function (i, entry) {
+				var docfragment = document.createDocumentFragment();
 				var image = entry.blobs.preview;
+
 				var svgimg = document.createElementNS('http://www.w3.org/2000/svg', 'image');
 				svgimg.setAttributeNS(null, 'height', sz);
 				svgimg.setAttributeNS(null, 'width', sz);
@@ -43,7 +58,9 @@
 					+ 'rotate('+ ((i+0.5)*60/n -30) +') '
 					+ 'translate('+ (-10-sz*0.5) +','+ (-(sz+120)/2) +')';
 				svgimg.setAttributeNS(null, 'transform', attrTransform);
-				tag.panel.appendChild(svgimg);
+
+				docfragment.appendChild(svgimg);
+				tag.panel.appendChild(docfragment);
 			});
 		}
 	</script>

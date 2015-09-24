@@ -2,42 +2,30 @@
 	<style scoped>
 		.shadow {
 			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
+			top: 0vh;
+			left: 0vw;
+			width: 100vw;
+			height: 100vh;
 			z-index: 500;
 			background-color: black;
 			opacity: 0.2;
 		}
 		.inspector {
-			width: 50%;
+			width: 50vw;
 			background-color: white;
 			overflow: auto;
 		}
 		.box {
 			position: fixed;
-			top: 1%;
-			bottom: 1%;
-			right: -52%;
-			padding: 1%;
+			top: 1vh;
+			bottom: 1vh;
+			right: -52vw;
+			padding: 1vw;
 			z-index: 600;
-			right: right: -52%;
+			transition:all 0.3s ease-out;
 		}
 		.inspector-open {
-			-webkit-transition: all 3ms ease-in-out;
-			-moz-transition: all 3ms ease-in-out;
-			-ms-transition: all 3ms ease-in-out;
-			-o-transition: all 3ms ease-in-out;
-			transition:all 0.3s ease-in-out;
-			right: 1%;
-		}
-		.inspector-close {
-			-webkit-transition: all 3ms ease-in-out;
-			-moz-transition: all 3ms ease-in-out;
-			-ms-transition: all 3ms ease-in-out;
-			-o-transition: all 3ms ease-in-out;
-			transition:all 0.3s ease-in-out;
+			right: 1vw;
 		}
 
 		.close {
@@ -45,7 +33,7 @@
 		}
 	</style>
 	<div name="shadow" class="shadow" style="display:none" onclick="{cerrar}"></div>
-	<div name="inspector" class="box inspector {inspector-open: visible, inspector-close: !visible}">
+	<div name="inspector" class="box inspector {inspector-open: visible}">
 		<span onclick="{cerrar}" class="close">
 			<span class="links">cerrar</span>
 		</span>
