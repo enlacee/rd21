@@ -22,7 +22,7 @@
 			right: -52vw;
 			padding: 1vw;
 			z-index: 600;
-			transition:all 0.3s ease-out;
+			-webkit-transition:0.5s all;
 		}
 		.inspector-open {
 			right: 1vw;

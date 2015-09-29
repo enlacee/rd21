@@ -26,12 +26,13 @@
 			filter.appendChild(feOffset);
 
 			var feMerge = document.createElementNS("http://www.w3.org/2000/svg", "feMerge");
+			filter.appendChild(feMerge);
+
 			var feMergeNode = document.createElementNS("http://www.w3.org/2000/svg", "feMergeNode");
+			feMerge.appendChild(feMergeNode);
+
 			var feMergeNode_in = document.createElementNS("http://www.w3.org/2000/svg", "feMergeNode");
 			feMergeNode_in.setAttribute('in', 'SourceGraphic');
-
-			filter.appendChild(feMerge);
-			feMerge.appendChild(feMergeNode);
 			feMerge.appendChild(feMergeNode_in);
 
 			tag.panel.appendChild(filter);
@@ -41,10 +42,9 @@
 			var n = env.seleccion.length();
 			var sz = Math.max(24*(10-n), 120);
 
+			var docfragment = document.createDocumentFragment();
 			env.seleccion.each(function (i, entry) {
-				var docfragment = document.createDocumentFragment();
 				var image = entry.blobs.preview;
-
 				var svgimg = document.createElementNS('http://www.w3.org/2000/svg', 'image');
 				svgimg.setAttributeNS(null, 'height', sz);
 				svgimg.setAttributeNS(null, 'width', sz);
@@ -60,8 +60,8 @@
 				svgimg.setAttributeNS(null, 'transform', attrTransform);
 
 				docfragment.appendChild(svgimg);
-				tag.panel.appendChild(docfragment);
 			});
+			tag.panel.appendChild(docfragment);
 		}
 	</script>
 </svg-list>
